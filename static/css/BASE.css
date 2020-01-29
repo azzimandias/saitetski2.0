@@ -1,0 +1,17 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background: url("https://images.wallpaperscraft.ru/image/les_tuman_derevia_151477_3840x2400.jpg") fixed;
+    font-family: sans-serif;
+    text-align: center;
+}
+.navv{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    /*transform: translate(0px, -190px);*/
+}
+*{
+    box-sizing: border-box;
+}

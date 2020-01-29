@@ -1,0 +1,23 @@
+{% extends 'BASE.html' %}
+
+{% block title %}
+    Ваш профиль
+{% endblock %}
+
+{% block navbuttons %}
+    <li class="nav-item">
+        <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Войдите</a>
+    </li>
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('Profile') }}">{{ current_user.username }}<span class="sr-only">(current)</span></a>
+    </li>
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('Logout') }}">Выйти<span class="sr-only">(current)</span></a>
+    </li>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

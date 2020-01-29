@@ -1,0 +1,44 @@
+{% extends 'BASE.html' %}
+
+{% block title %}
+    An exception has occured
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" type="text/css" href="/static/css/ErrorPage.css">
+{% endblock %}
+
+{% block content %}>
+    <div class="main">
+        <div class="one">
+            <div class="oneone">
+                <div class="naeb1"></div>
+                <div class="oneh"><h1>4</h1></div>
+                <img src="https://media.tenor.com/images/10dc5d611e8b2abc48eb5e831b2982aa/tenor.gif" class="left">
+            </div>
+        </div>
+        <div class="two">
+            <div class="twotwo">
+                <div class="naeb2"></div>
+                <div class="twoh"><h1>0</h1></div>
+                <img src="https://i0.wp.com/pa1.narvii.com/6940/4f6cea357bae31bd519905090000373d279408e2r1-515-877_hq.gif" class="middle">
+            </div>
+        </div>
+        <div class="three">
+            <div class="threethree">
+                <div class="naeb3"></div>
+                <div class="threeh"><h1>4</h1></div>
+                <img src="https://media.tenor.com/images/f1c873ff4222d7c1a5f35c6a0a7b3b30/tenor.gif" class="right">
+            </div>
+        </div>
+    </div>
+    <div class="opacity"></div>
+    <div class="container">
+        <div class="containercontainer">
+            <h2>Ёлки-палки!</h2>
+            <h2>Данная страница не найдена</h2>
+            <a href="{{ url_for('MainPage') }}">Вернёмся к началу?</a>
+        </div>
+    </div>
+{% endblock %}
+

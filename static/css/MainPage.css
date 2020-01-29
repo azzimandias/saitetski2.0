@@ -1,0 +1,155 @@
+h1{
+    color: #ffffff;
+    font-family: Mistral;
+    font-size: 80px;
+}
+h2{
+    color: #ffffff;
+    font-family: Mistral;
+    font-size: 60px;
+}
+p{
+    color: #ffffff;
+    font-size: 22px;
+    padding: 20px;
+}
+.head{
+    position: relative;
+    transform: translate(-25%, 50%);
+    /*border: 2px solid white;*/
+}
+.Alway_sready{
+    width: 600px;
+    height: 120px;
+    background: darkslategray;
+    color: #ffffff;
+    bottom: 75%;
+    left: 60%;
+    position: relative;
+    transform: translate(0, -50%);
+    box-sizing: border-box;
+    padding: 19px 19px;
+    border-radius: 20px;
+    margin-bottom: 150px;
+    /*border: 2px solid white;*/
+}
+.Alway_sready h3{
+    font-size: 22px;
+    left: 100%;
+    position: static;
+    color: #ffffff;
+    /*transform: translate(-10%, 0%);*/
+    /*border: 2px solid white;*/
+}
+.alwaysready{
+    position: static;
+    width: 100px;
+    height: 100px;
+    /*transform: translate(230px, -80px);*/
+   /* border: 2px solid white;*/
+}
+.fox{
+    animation: _right 6s infinite;
+    -webkit-animation: _right 6s infinite;
+    position: relative;
+    width: 330px;
+    height: 200px;
+    /*border: 2px solid white;*/
+}
+.fox1{
+    position: relative;
+    left: 45%;
+    transform: translate(0%, 5%);
+    /*border: 2px solid white;*/
+}
+.one{
+    width: 100%;
+    /*margin-top: 1px;*/
+    background: darkslategray;
+    color: #ffffff;
+    /*right: 0;
+    top: 120%;*/
+    position: relative;
+    box-sizing: border-box;
+    padding: 30px 30px;
+    margin: 0px;
+    /*border: 2px solid white;*/
+}
+.two{
+    width: 100%;
+    background: darkslategray;
+    color: #ffffff;
+    /*right: 0;
+    top: 120%;*/
+    position: relative;
+    box-sizing: border-box;
+    padding: 30px 30px;
+    margin-top: 1px;
+    /*border: 2px solid white;*/
+}
+.mid{
+    width: 100%;
+    height: 100%;
+    background: aliceblue;
+    opacity: .2;
+    /*top: 100%;*/
+    position: absolute;
+    /*border: 2px solid white;*/
+}
+.volf{
+    animation: _left 6s infinite;
+    -webkit-animation: _left 6s infinite;
+    position: relative;
+    width: 430px;
+    height: 300px;
+    /*border: 2px solid white;*/
+}
+.volf1{
+    position: relative;
+    right: 45%;
+    transform: translate(0%, 25%);
+    /*border: 2px solid white;*/
+}
+
+.end{
+    width: 100%;
+    height: 30%;
+    background: url("https://images.wallpaperscraft.ru/image/tekstura_seryy_temnyy_dark_minimalistic_minimalistichnyy_74503_1920x1080.jpg") center;
+    opacity: .85;
+    position: absolute;
+}
+
+@keyframes _right {
+    from {
+        right: calc(0% - 330px);
+    }
+    to {
+        right: 105%;
+    }
+}
+/* Префикс для Chrome, Opera, Safari */
+@-webkit-keyframes _right {
+    from {
+        right: calc(0% - 330px);
+    }
+    to {
+        right: 105%;
+    }
+}
+@keyframes _left {
+    from {
+        left: calc(0% - 430px);
+    }
+    to {
+        left: 105%;
+    }
+}
+/* Префикс для Chrome, Opera, Safari */
+@-webkit-keyframes _left {
+    from {
+        left: calc(0% - 430px);
+    }
+    to {
+        left: 105%;
+    }
+}

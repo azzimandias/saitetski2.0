@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/BASE.css">
+    {% block links %}
+
+    {% endblock %}
+</head>
+<body style='overflow-x:hidden;'>
+    `   {% block content %}
+
+    `   {% endblock %}`
+        <div class="navv">
+            <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: darkslategray;">
+                <a class="navbar-brand" href="{{ url_for('MainPage') }}">
+                    Зоологический музей им. Ильича Ленина
+                    <img src="https://avatars.mds.yandex.net/get-pdb/1920375/d5fb0107-d3f2-4a60-a3c4-fce34cd0d0a9/s1200" width="30" height="30" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+
+                        {#<li class="nav-item active">
+                            <a class="nav-link" href="{{ url_for('SingIn') }}">Войдите<span class="sr-only">(current)</span></a>
+                        </li>#}
+
+                        {% block navbuttons %}
+
+                        {% endblock %}
+
+                        {#<li class="nav-item">
+                            <a class="nav-link" href="#">Ссылка</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Отключено</a>
+                        </li>#}
+                    </ul>
+
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Поиск в коллекции" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+
+</body>
+</html>
