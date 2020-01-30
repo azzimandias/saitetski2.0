@@ -2,15 +2,73 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3a3f675-18e5-477a-a625-185f6bd437e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/Profile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage-5.0.3.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage-5.0.3.dist-info/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage-5.0.3.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage-5.0.3.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage-5.0.3.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage-5.0.3.dist-info/entry_points.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage-5.0.3.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/__main__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/annotate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/backunittest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/backward.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/bytecode.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/cmdline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/collector.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/context.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/control.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/debug.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/disposition.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/execfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/files.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/fullcoverage/encodings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/html.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/coverage_html.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/jquery.ba-throttle-debounce.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/jquery.hotkeys.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/jquery.isonscreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/jquery.tablesorter.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/keybd_closed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/keybd_open.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/pyfile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/htmlfiles/style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/inorout.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/jsonreport.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/misc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/multiproc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/numbits.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/optional.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/phystokens.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/plugin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/plugin_support.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/python.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/pytracer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/report.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/results.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/sqldata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/summary.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/templite.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/tomlconfig.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/tracer.cp37-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lib/site-packages/coverage/xmlreport.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/coverage-3.7.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/coverage.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/coverage3.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/Prof.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/BASE.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/BASE.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/Profile.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/BASE.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/BASE.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/SingIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/SingIn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/SingUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/SingUp.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,8 +107,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Wym1KCjmux0L4ozFjvGu7dKd64" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -105,7 +166,9 @@
       <workItem from="1580297110059" duration="9687000" />
       <workItem from="1580323286752" duration="12146000" />
       <workItem from="1580377254614" duration="14879000" />
-      <workItem from="1580410858992" duration="386000" />
+      <workItem from="1580410858992" duration="4515000" />
+      <workItem from="1580419670314" duration="1920000" />
+      <workItem from="1580421693530" duration="572000" />
     </task>
     <servers />
   </component>
@@ -125,6 +188,9 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="Python.FlaskServer">
@@ -134,6 +200,6 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Lenin_Museum$Lenin_Museum.coverage" NAME="Lenin Museum Coverage Results" MODIFIED="1580411277555" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Lenin_Museum$Lenin_Museum.coverage" NAME="Lenin Museum Coverage Results" MODIFIED="1580422055789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

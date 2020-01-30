@@ -1,35 +1,44 @@
-.out{
-    position: absolute;
-    border: 2px solid black;
-}
-.box{
+.bbox{
     width: 30%;
     height: 90%;
     background: darkslategray;
     color: #ffffff;
-    bottom: 0%;
-    left: 0%;
+    bottom: calc(0% + 20px);
+    left: 2%;
     position: absolute;
     box-sizing: border-box;
-    padding: 80px 0px;
-    border-radius: 70px;
-    transform: translate(3%, -3%);
+    padding: 30px 30px;
+    border-radius: 20px;
 }
-.box h2{
-    color: #ffffff;
+.imag{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    bottom: calc(0% - 20px);
+    left: calc(100% - 260px);
+}
+h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 70px;
     font-family: Mistral;
-    font-size: 80px;
-    border: 2px solid black;
 }
-.im{
-    border: 100px solid black;
-    position: absolute;
+p{
+    text-align: left;
 }
-.image{
-    width: 250px;
-    height: 250px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    transform: translate(100px, 500px);
+.bbox input[type="submit"]{
+    border: none;
+    outline: none;
+    width: 100px;
+    height: 40px;
+    background: #ff7f48;
+    color: #ffffff;
+    font-size: 13px;
+    border-radius: 20px;
+}
+.bbox input[type="submit"]:hover{
+    cursor: pointer;
+    background: #ff0c32;
+    color: #000000;
 }
