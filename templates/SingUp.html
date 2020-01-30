@@ -18,7 +18,7 @@
     <div class="loginbox">
         <!--<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Creative-Tail-Animal-zebra.svg/256px-Creative-Tail-Animal-zebra.svg.png" class="avatar">-->
         <h1>Какой прекрасный день для регистрации</h1>
-        <form>
+        {#<form>
             <p>Имя</p>
             <input type="text" name="" placeholder="Введите Ваше имя">
             <p>Фамилия</p>
@@ -28,6 +28,33 @@
             <p>Пароль</p>
             <input type="password" name="" placeholder="Придумайте пароль"><br>
             <input type="submit" name="" value="Пожалуйста, возьмите мои данные и пользуйтесь ими в ваших личных целях"><br>
+            <a href="{{ url_for('SingIn') }}">Уже есть аккаунт?</a>
+        </form>#}
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=30, placeholder="Введите Ваше имя") }}<br>
+                {% for error in form.username.errors %}
+                    <span style="color: powderblue;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=10, placeholder="Придумайте пароль") }}<br>
+                {% for error in form.password.errors %}
+                    <span style="color: powderblue;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password2.label }}<br>
+                {{ form.password2(size=10, placeholder="Придумайте пароль") }}<br>
+                {% for error in form.password2.errors %}
+                    <span style="color: powderblue;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit() }}</p>
             <a href="{{ url_for('SingIn') }}">Уже есть аккаунт?</a>
         </form>
     </div>

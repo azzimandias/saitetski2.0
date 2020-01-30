@@ -4,6 +4,7 @@
     Ваш профиль
 {% endblock %}
 
+
 {% block navbuttons %}
     <li class="nav-item">
         <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Войдите</a>
@@ -18,6 +19,19 @@
     </li>
 {% endblock %}
 
-{% block content %}
 
+{% block links %}
+    <link rel="stylesheet" type="text/css" href="/static/css/Profile.css">
+{% endblock %}
+
+
+{% block content %}
+    <div class="out">
+        <div class="box">
+            <h2>{{ current_user.username }}</h2>
+        </div>
+    </div>
+    <div class="im">
+        <img src="https://pa1.narvii.com/7015/07fdf723dc0fc3922df9fc2e5febeec4de6ae2b0r1-320-270_hq.gif" class="image">
+    </div>
 {% endblock %}

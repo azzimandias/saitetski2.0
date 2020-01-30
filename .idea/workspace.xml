@@ -2,41 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3a3f675-18e5-477a-a625-185f6bd437e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Lenin Museum.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DB.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/Activate.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/activate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/activate.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/deactivate.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/python.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/python_d.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/pythonw.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/pythonw_d.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyvenv.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/BASE.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/ErrorPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/MainPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/SingIn.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/SingUp.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/BASE.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/ErrorPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Loh.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/MainPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/SingIn.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/SingUp.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/di-JFAX.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/rcjprGzcR.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/Profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/BASE.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/BASE.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/BASE.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/BASE.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/SingIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/SingIn.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/SingUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/SingUp.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +41,7 @@
         <option value="Flask Main" />
         <option value="HTML File" />
         <option value="Python Script" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -79,6 +54,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
@@ -127,7 +103,9 @@
       <workItem from="1580255172748" duration="138000" />
       <workItem from="1580291113516" duration="1862000" />
       <workItem from="1580297110059" duration="9687000" />
-      <workItem from="1580323286752" duration="10627000" />
+      <workItem from="1580323286752" duration="12146000" />
+      <workItem from="1580377254614" duration="14879000" />
+      <workItem from="1580410858992" duration="386000" />
     </task>
     <servers />
   </component>
@@ -139,7 +117,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -154,6 +134,6 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Lenin_Museum$Lenin_Museum.coverage" NAME="Lenin Museum Coverage Results" MODIFIED="1580337195814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Lenin_Museum$Lenin_Museum.coverage" NAME="Lenin Museum Coverage Results" MODIFIED="1580411277555" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

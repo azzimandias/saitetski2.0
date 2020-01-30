@@ -3,25 +3,16 @@ from flask import render_template, flash, redirect, url_for, request
 import logging
 from flask_login import LoginManager, logout_user, login_required, login_user, current_user
 from config import Config
-from forms import LoginForm
+from forms import LoginForm, RegistrationForm
 from flask_login import UserMixin
 #from __init__ import login
 from DB import cur, con
-
+global usn
+usn = ''
 global a
 a = 0
 
-# form = LoginForm()
-# username = form.username.data
-# password = form.password.data
-# cur.execute("select * from customers")
-# users = cur.fetchall()
-# for a_user in users:
-#     print(a_user)
-#     if a_user[1] == username and a_user[2] == password:
-#         a = 0
-#     else:
-#         a = 1
+
 # Run ######################################################################
 app = Flask(__name__)
 
@@ -44,16 +35,17 @@ class User(UserMixin):
         self.set_username()
 
     def set_username(self):
-        if a == 0:
-            cur.execute("select login from customers")
-            username = cur.fetchone()
-            self.username = username[0]
+        if a == 1:
+            # cur.execute("select login from customers")
+            # username = cur.fetchone()
+            self.username = usn  # username[0]
             con.commit()
-        else:
-            cur.execute("select name from employees")
-            username = cur.fetchone()
-            self.username = username[0]
+        elif a == 2:
+            # cur.execute("select name from employees")
+            # username = cur.fetchone()
+            self.username = usn # username[0]
             con.commit()
+
 
 # Routes ######################################################################
 @app.route('/')
@@ -61,20 +53,39 @@ def MainPage():
     return render_template('MainPage.html')#, login=login)
 
 
-@app.route('/SingUp')
+@app.route('/SingUp', methods=['GET', 'POST'])
 def SingUp():
-    return render_template('SingUp.html')
+    #return render_template('SingUp.html')
+    if current_user.is_authenticated:
+        return redirect(url_for('MainPage'))
+    reg_form = RegistrationForm()
+    if reg_form.validate_on_submit():
+        print('form.register succeed')
+        try:
+            cur.execute("INSERT INTO customers (login, password)"
+                        "VALUES ('{}', '{}')".format(reg_form.username.data, reg_form.password.data))
+            con.commit()
+        except:
+            logging.exception('')
+            print('user not registered')
+            cur.execute("ROLLBACK")
+            con.commit()
+        return redirect(url_for('SingIn'))
+    return render_template('SingUp.html', form=reg_form)
 
 
 @app.route('/Profile')
 # @login_required
 def Profile():
-    name = 'Andrew'
-    return render_template('Profile.html', Name=name)
+    if usn == '':
+        return redirect(url_for('MainPage'))
+    return render_template('Profile.html')
 
 
 @app.route('/Loh')
 def Loh():
+    if current_user.is_authenticated:
+        return redirect(url_for('MainPage'))
     return render_template('Loh.html')
 
 
@@ -86,10 +97,13 @@ def Fourzerofour(e):
 @app.route('/SingIn', methods=['GET', 'POST'])
 def SingIn():
     global a
-    a = 0
+    global usn
+    if a == 0:
+        logout()
     if current_user.is_authenticated:
-        return redirect(url_for('Profile'))
+        return redirect(url_for('MainPage'))
     form = LoginForm()
+    a = 1
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
@@ -99,16 +113,18 @@ def SingIn():
             print(a_user)
             if a_user[1] == username and a_user[2] == password:
                 user = User(a_user[0])
+                usn = a_user[1]
                 login_user(user, remember=form.remember_me.data)
                 return redirect(url_for('Profile'))
         con.commit()
-        a = 1
+        a = 2
         cur.execute("select passport№, name, password from employees")
         users = cur.fetchall()
         for a_user in users:
             print(a_user)
             if a_user[1] == username and a_user[2] == password:
                 user = User(a_user[0])
+                usn = a_user[1]
                 login_user(user, remember=form.remember_me.data)
                 return redirect(url_for('Profile'))
     return render_template('SingIn.html', title='Sign In', form=form)
@@ -118,3 +134,9 @@ def SingIn():
 def Logout():
     logout_user()
     return redirect(url_for('MainPage'))
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('SingIn'))
