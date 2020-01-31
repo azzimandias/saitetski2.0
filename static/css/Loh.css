@@ -1,0 +1,46 @@
+.mum{
+    width: 550px;
+    height: 450px;
+    background: darkslategray;
+    color: #ffffff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 80px 30px;
+    border-radius: 20px;
+}
+h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 50px;
+    font-family: Mistral;
+}
+input[type="text"]{
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    background: transparent;
+    outline: none;
+    width: 300px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+}
+input[type="submit"]{
+    border: none;
+    outline: none;
+    width: 300px;
+    height: 40px;
+    background: #ff7f48;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+input[type="submit"]:hover{
+    cursor: pointer;
+    background: #ff0c32;
+    color: #000000;
+}

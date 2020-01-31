@@ -4,6 +4,10 @@
     Сударь, Вы дурачок)
 {% endblock %}
 
+{% block links %}
+    <link rel="stylesheet" type="text/css" href="/static/css/Loh.css">
+{% endblock %}
+
 {% block navbuttons %}
     <li class="nav-item active">
         <a class="nav-link" href="{{ url_for('SingIn') }}">Войдите<span class="sr-only">(current)</span></a>
@@ -11,5 +15,18 @@
 {% endblock %}
 
 {% block content %}
-
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="mum">
+            <h1>Итак, Вы забыли пароль:</h1>
+            <p>Введите ваше имя</p>
+            {{ form.username(size=32, placeholder="Введите имя пользователя") }}<br><br>
+            {{ form.submit() }}<br><br>
+            {% if pas != ''%}
+                <p>Пароль: {{ pas }}</p>
+            {% else %}
+                <div></div>
+            {% endif %}
+        </div>
+    </form>
 {% endblock %}

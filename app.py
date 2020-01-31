@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request
 import logging
 from flask_login import LoginManager, logout_user, login_required, login_user, current_user
 from config import Config
-from forms import LoginForm, RegistrationForm
+from forms import LoginForm, RegistrationForm, CheckForm
 from flask_login import UserMixin
 #from __init__ import login
 from DB import cur, con
@@ -82,11 +82,21 @@ def Profile():
     return render_template('Profile.html')
 
 
-@app.route('/Loh')
+@app.route('/Loh', methods=['GET', 'POST'])
 def Loh():
+    pas = ''
     if current_user.is_authenticated:
         return redirect(url_for('MainPage'))
-    return render_template('Loh.html')
+    form = CheckForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        cur.execute("select * from customers")
+        users = cur.fetchall()
+        for a_user in users:
+            print(a_user)
+            if a_user[1] == username:
+                pas = a_user[2]
+    return render_template('Loh.html', form=form, pas=pas)
 
 
 @app.errorhandler(404)

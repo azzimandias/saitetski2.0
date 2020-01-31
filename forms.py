@@ -10,6 +10,9 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Запомнить меня')
     submit = SubmitField('OK!')
 
+class CheckForm(FlaskForm):
+    username = StringField('Введите имя пользователя', validators=[DataRequired()])
+    submit = SubmitField('OK!')
 
 class RegistrationForm(FlaskForm):
     username = StringField('Имя пользователя', validators=[DataRequired()])
