@@ -67,3 +67,42 @@ h1{
 .loginbox a:hover{
     color: saddlebrown;
 }
+.check{
+    cursor: pointer;
+}
+.check:hover{
+    filter: brightness(1.1);
+}
+.loginbox input[type="checkbox"]{
+    display: none;
+}
+input[type="checkbox"]:checked ~ .ch{
+    background-color: #ff7f48;
+}
+input[type="checkbox"]:checked ~ .ch::before{
+    background-color: darkgray;
+    left: 44px;
+}
+.ch{
+    position: relative;
+    background-color: darkgray;
+    outline: none;
+    color: #ffffff;
+    width: 80px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 20px;
+    transform: translate(20px, -2px);
+    transition: 0.3s;
+}
+.ch::before{
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 30px;
+    height: 30px;
+    background-color: #ff7f48;
+    border-radius: 50%;
+    transition: 0.3s;
+}

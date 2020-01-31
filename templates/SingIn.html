@@ -43,7 +43,10 @@
                     <span style="color: powderblue;">[{{ error }}]</span>
                 {% endfor %}
             </p>
-            <p>{{ form.remember_me.label }}{{ form.remember_me() }}</p>
+            <label class="check">
+                {{ form.remember_me.label }}{{ form.remember_me() }}
+                <div class="ch"></div>
+            </label>
             <p>{{ form.submit() }}</p>
             <a href="{{ url_for('Loh') }}">Забыли пароль?</a><br>
             <a href="{{ url_for('SingUp') }}">Хотите зарегистрироваться?</a>

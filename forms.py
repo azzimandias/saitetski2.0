@@ -15,7 +15,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('Имя пользователя', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired()])
     password2 = PasswordField('Повторите пароль', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('OK!')
+    submit = SubmitField('Пожалуйста, возьмите мои данные и пользуйтесь ими в ваших личных целях')
 
     def validate_username(self, username):
         cur.execute("SELECT login FROM customers")
