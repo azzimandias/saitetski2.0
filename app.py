@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request
 import logging
 from flask_login import LoginManager, logout_user, login_required, login_user, current_user
 from config import Config
-from forms import LoginForm, RegistrationForm, CheckForm
+from forms import LoginForm, RegistrationForm, CheckForm, ExtendForm
 from flask_login import UserMixin
 #from __init__ import login
 from DB import cur, con
@@ -11,7 +11,8 @@ global usn
 usn = ''
 global a
 a = 0
-
+global passworld
+passworld = ''
 
 # Run ######################################################################
 app = Flask(__name__)
@@ -74,12 +75,46 @@ def SingUp():
     return render_template('SingUp.html', form=reg_form)
 
 
-@app.route('/Profile')
-# @login_required
+@app.route('/Profile', methods=['GET', 'POST'])
 def Profile():
+    card = 0
+    month = 0
+    year = 0
+    CVV = 0
+    extend = 0
     if usn == '':
         return redirect(url_for('MainPage'))
-    return render_template('Profile.html')
+    user = current_user.username
+    cur.execute("select * from cards")
+    userss = cur.fetchall()
+    for a_users in userss:
+        print(a_users)
+        if a_users[1] == user:
+            extend = 1
+            con.commit()
+            card = a_users[3]
+            month = a_users[4]
+            year = a_users[5]
+            CVV = a_users[6]
+            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV)
+    con.commit()
+    form = ExtendForm()
+    if request.method == 'POST':
+        card = form.card.data
+        month = form.month.data
+        year = form.year.data
+        CVV = form.CVV.data
+        try:
+            cur.execute("INSERT INTO cards (id, login, password, card№, card_month, card_year, card_cvv)"
+                    "VALUES ({}, '{}', '{}', {}, {}, {}, {})".format(current_user.id, current_user.username, passworld, card, month, year, CVV))
+            con.commit()
+            extend = 1
+        except:
+            logging.exception('')
+            print('wrong')
+            cur.execute("ROLLBACK")
+            con.commit()
+    return render_template('Profile.html', form=form, extend=extend)
 
 
 @app.route('/Loh', methods=['GET', 'POST'])
@@ -106,7 +141,7 @@ def Fourzerofour(e):
 
 @app.route('/SingIn', methods=['GET', 'POST'])
 def SingIn():
-    global a
+    global a, passworld
     global usn
     if a == 0:
         logout()
@@ -125,6 +160,7 @@ def SingIn():
                 user = User(a_user[0])
                 usn = a_user[1]
                 login_user(user, remember=form.remember_me.data)
+                passworld = password
                 return redirect(url_for('Profile'))
         con.commit()
         a = 2
@@ -136,6 +172,7 @@ def SingIn():
                 user = User(a_user[0])
                 usn = a_user[1]
                 login_user(user, remember=form.remember_me.data)
+                passworld = password
                 return redirect(url_for('Profile'))
     return render_template('SingIn.html', title='Sign In', form=form)
 

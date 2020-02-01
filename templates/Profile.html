@@ -26,13 +26,43 @@
 
 
 {% block content %}
+    <form action="" method="post" novalidate>
     <div class="out">
         <div class="bbox">
             <h1>{{ current_user.username }}</h1>
-            <p>Может быть Вы хотите добавить еще немного информации о себе?<br>Это позволит Вам покупать и оплачивать билеты.</p>
-            <input type="submit" name="" value="Добавить">
+            {% if extend != 0 %}
+                <div class="card">
+                    <div class="number"><h2>{{ card }}</h2></div>
+                    <div class="month"><h3>{{ month }}</h3></div>
+                    <div class="year"><h3>{{ year }}</h3></div>
+                    <div class="CVV"><h3>***</h3></div>
+                    <h3>/</h3>
+                </div>
+            {% else %}
+                <p>Может быть Вы хотите добавить еще немного информации о себе?<br>Это позволит Вам покупать и оплачивать билеты.</p>
+                <br>
+                <label class="check">
+                    <input type="checkbox" name="">
+                    <div class="ch"></div>
+                    <br>
+                    <div class="display">
+
+                            {{ form.hidden_tag() }}
+                            <div class="card">
+                                <div class="number">{{ form.card(size=20, placeholder="5500 0000 0000 0000") }}</div><br>
+                                <div class="month">{{ form.month(size=1, placeholder="mon") }}</div><br>
+                                <div class="year">{{ form.year(size=1, placeholder="year") }}</div><br>
+                                <div class="CVV">{{ form.CVV(size=1, placeholder="CVV") }}</div>
+                                <h3>/</h3>
+                            </div>
+                            <br><br><br>
+                        <form action="" method="post" novalidate>{{ form.submit() }}</form><br>
+                    </div>
+                </label>
+            {% endif %}
         </div>
     </div>
+    </form>
     <div class="krug"></div>
     <img src="https://pa1.narvii.com/7015/07fdf723dc0fc3922df9fc2e5febeec4de6ae2b0r1-320-270_hq.gif" class="imag">
 {% endblock %}

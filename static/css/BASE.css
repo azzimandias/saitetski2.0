@@ -2,7 +2,7 @@ body{
     margin: 0;
     padding: 0;
     background-size: cover;
-    background: url("https://images.wallpaperscraft.ru/image/les_tuman_derevia_151477_3840x2400.jpg") fixed round;
+    background: url("https://images.wallpaperscraft.ru/image/les_tuman_derevia_151477_3840x2400.jpg") fixed round no-repeat;
     font-family: sans-serif;
     text-align: center;
 }
