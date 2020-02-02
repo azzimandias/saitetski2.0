@@ -109,6 +109,7 @@ def Profile():
                     "VALUES ({}, '{}', '{}', {}, {}, {}, {})".format(current_user.id, current_user.username, passworld, card, month, year, CVV))
             con.commit()
             extend = 1
+            return render_template('Profile.html', form=form, extend=extend, card=card, month=month, year=year, CVV=CVV)
         except:
             logging.exception('')
             print('wrong')

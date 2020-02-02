@@ -24,10 +24,18 @@ h1{
     font-size: 70px;
     font-family: Mistral;
 }
+h2{
+    font-family: "OCR A Extended";
+    position: absolute;
+}
 h3{
     position: absolute;
     top: 65%;
     left: 22%;
+}
+h4{
+    font-family: "OCR A Extended";
+    position: absolute;
 }
 p{
     text-align: left;
@@ -68,15 +76,18 @@ p{
     top: 35%;
     left: calc(50% - 175px);
 }
+
 .display{
     visibility: hidden;
     opacity: 0;
     transition: 1.5s;
 }
+
 input[type="checkbox"]:checked ~ .display{
     visibility: initial;
     opacity: 1;
 }
+
 .number{
     position: absolute;
     top: 20%;
@@ -97,6 +108,28 @@ input[type="checkbox"]:checked ~ .display{
     top: 60%;
     left: 70%;
 }
+
+.number1{
+    position: absolute;
+    top: 10%;
+    left: 5%;
+}
+.month1{
+    position: absolute;
+    top: 65%;
+    left: 12%;
+}
+.year1{
+    position: absolute;
+    top: 65%;
+    left: 25%;
+}
+.CVV1{
+    position: absolute;
+    top: 65%;
+    left: 70%;
+}
+
 input[type="text"]{
     border: none;
     border-bottom: 1px solid #ffffff;

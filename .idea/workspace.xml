@@ -4,8 +4,6 @@
     <list default="true" id="c3a3f675-18e5-477a-a625-185f6bd437e4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/BASE.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/BASE.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/Profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/Profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Profile.html" afterDir="false" />
     </list>
@@ -111,6 +109,7 @@
       <workItem from="1580422326959" duration="9125000" />
       <workItem from="1580460704618" duration="2939000" />
       <workItem from="1580554330099" duration="30116000" />
+      <workItem from="1580595721187" duration="3185000" />
     </task>
     <servers />
   </component>
@@ -134,6 +133,6 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Lenin_Museum$Lenin_Museum.coverage" NAME="Lenin Museum Coverage Results" MODIFIED="1580594339021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Lenin_Museum$Lenin_Museum.coverage" NAME="Lenin Museum Coverage Results" MODIFIED="1580683370652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
