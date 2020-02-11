@@ -1,7 +1,7 @@
 {% extends 'BASE.html' %}
 
 {% block title %}
-    Ваш профиль
+    LM - Ваш профиль
 {% endblock %}
 
 
@@ -31,7 +31,9 @@
         <div class="bbox">
             <h1>{{ current_user.username }}</h1>
             {% if extend != 0 %}
-                <div class="card">
+                <p>Наконец-то все готово!<br>Теперь вы можете приступать к покупке билетов.</p>
+                <p class="p">Ваша карта успешно добавлена!</p>
+                <div class="card1">
                     <div class="number1"><h2>{{ card }}</h2></div>
                     <div class="month1"><h4>{{ month }}</h4></div>
                     <div class="year1"><h4>{{ year }}</h4></div>

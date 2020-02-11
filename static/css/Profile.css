@@ -9,6 +9,7 @@
     box-sizing: border-box;
     padding: 30px 30px;
     border-radius: 20px;
+    box-shadow:  0 0 20px rgba(0,0,0,0.5);
 }
 .imag{
     width: 300px;
@@ -39,6 +40,11 @@ h4{
 }
 p{
     text-align: left;
+}
+.p{
+    font-family: Mistral;
+    font-size: 100px;
+    text-align: center;
 }
 .bbox input[type="submit"]{
     border: none;
@@ -74,6 +80,16 @@ p{
     border-radius: 20px;
     position: absolute;
     top: 35%;
+    left: calc(50% - 175px);
+    box-shadow:  0 0 20px rgba(0,0,0,0.5);
+}
+.card1{
+    width: 350px;
+    height: 200px;
+    background: #ff7f48;
+    border-radius: 20px;
+    position: absolute;
+    top: 38%;
     left: calc(50% - 175px);
 }
 

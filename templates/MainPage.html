@@ -1,7 +1,7 @@
 {% extends 'BASE.html' %}
 
 {% block title %}
-    Добро пожаловать!
+   LM - Добро пожаловать!
 {% endblock %}
 
 {% block navbuttons %}
@@ -29,10 +29,11 @@
 {% endblock %}
 
 {% block content %}
+    {#<form action="" method="post" novalidate>#}
             <div class="head">
                 <h1>Добро пожаловать</h1>
                 {% if current_user.username %}
-                    <h2>Рады вас видеть :* {{ current_user.username }}</h2>
+                    <h2>Рады вас видеть :* |{{ current_user.username }}|</h2>
                 {% else %}
                     <h2>Рады вас видеть :*</h2>
                 {% endif %}
@@ -52,15 +53,89 @@
             <div class="mid">
 
             </div>
+            <div class="three"></div>
             <div class="volf1"><img src="https://i.pinimg.com/originals/29/9d/02/299d029dc49b4d2f433ea5bb80d3d713.gif" class="volf" ></div>
             <div class="two">
-                <h2>Дратути</h2>
-                <p>Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-                    текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-                    текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст </p>
+                <h2>Наши выставки</h2>
+                <div class="slider middle">
+                    <div class="slides">
+                        <input type="radio" name="r" id="r1" checked>
+                        <input type="radio" name="r" id="r2">
+                        <input type="radio" name="r" id="r3">
+                        <input type="radio" name="r" id="r4">
+                        {#<input type="radio" name="b" id="b1">
+                        <input type="radio" name="b" id="b2">
+                        <input type="radio" name="b" id="b3">
+                        <input type="radio" name="b" id="b4">
+                        <input type="radio" name="b" id="b5">
+                        <input type="radio" name="b" id="b6">#}
+{#                        <h2>{{ exhibition1 }}</h2>#}
+                        <div class="slide s1">
+                            {#<img src="https://s2.best-wallpaper.net/wallpaper/3840x1200/1906/Banff-National-Park-Canada-trees-lake-water-reflection_3840x1200.jpg ">#}
+                            {#<label for="b1" class="rig1"></label>#}
+                            <h2>{{ exhibition1 }}</h2>
+                            <h3>Зал:{{ hall_name1 }}<br><br><br>
+                                Этаж:{{ floor1 }}<br><br><br>
+                                Стоимость - обычный билет:{{ price1 }}<br><br>
+                                            детский билет:{{ price1d }}</h3>
+                            {#{% if current_user.username %}#}
+                                <div class="up"><form action="" method="post" name="f1" novalidate>{{ f1.submit1()}} {{ f1.csrf_token }}</form></div>
+                                <div class="down"><form action="" method="post" novalidate>{{ f1d.submit1d()}} {{ f1d.csrf_token }}</form></div>
+                            {#{% endif %}#}
+                        </div>
+                        <div class="slide s2">
+                            {#<img src="https://s2.best-wallpaper.net/wallpaper/3840x1200/1607/Dolomites-sunrise-snow-winter-Italy_3840x1200.jpg">#}
+                            {#<label for="b2" class="lef2"></label>
+                            <label for="b3" class="rig2"></label>#}
+                            <h2>{{ exhibition2 }}</h2>
+                            <h3>Зал:{{ hall_name2 }}<br><br><br>
+                                Этаж:{{ floor2 }}<br><br><br>
+                                Стоимость - обычный билет:{{ price2 }}<br><br>
+                                            детский билет:{{ price2d }}</h3>
+                            {#{% if current_user.username %}#}
+                                <div class="up"><form action="" method="post" novalidate>{{ f2.submit2()}} {{ f2.csrf_token }}</form></div>
+                                <div class="down"><form action="" method="post" novalidate>{{ f2d.submit2d()}}  {{ f2d.csrf_token }}</form></div>
+                            {#{% endif %}#}
+                        </div>
+                        <div class="slide s3">
+                            {#<img src="http://getwallpapers.com/wallpaper/full/9/a/e/576049.jpg">#}
+                            {#<label for="b4" class="lef3"></label>
+                            <label for="b5" class="rig3"></label>#}
+                            <h2>{{ exhibition3 }}</h2>
+                            <h3>Зал:{{ hall_name3 }}<br><br><br>
+                                Этаж:{{ floor3 }}<br><br><br>
+                                Стоимость - обычный билет:{{ price3 }}<br><br>
+                                            детский билет:{{ price3d }}</h3>
+                            {#{% if current_user.username %}#}
+                                <div class="up"><form action="" method="post" novalidate>{{ f3.submit3()}} {{ f3.csrf_token }}</form></div>
+                                <div class="down"><form action="" method="post" novalidate>{{ f3d.submit3d()}} {{ f3d.csrf_token }}</form></div>
+                            {#{% endif %}#}
+                        </div>
+                        <div class="slide s4">
+                            {#<img src="https://www.tokkoro.com/picsup/1386619-landscape.jpg">#}
+                            {#<label for="b6" class="lef4"></label>#}
+                            <h2>{{ exhibition4 }}</h2>
+                            <h3>Зал:{{ hall_name4 }}<br><br><br>
+                                Этаж:{{ floor4 }}<br><br><br>
+                                Стоимость - обычный билет:{{ price4 }}<br><br>
+                                            детский билет:{{ price4d }}</h3>
+                            {#{% if current_user.username %}#}
+                                <div class="up"><form action="" method="post" novalidate>{{ f4.submit4()}} {{ f4.csrf_token }}</form></div>
+                                <div class="down"><form action="" method="post" novalidate>{{ f4d.submit4d()}} {{ f4d.csrf_token }}</form></div>
+                            {#{% endif %}#}
+                        </div>
+                    </div>
+                    <div class="naw">
+                        <label for="r1" class="bar"></label>
+                        <label for="r2" class="bar"></label>
+                        <label for="r3" class="bar"></label>
+                        <label for="r4" class="bar"></label>
+                    </div>
+                </div>
             </div>
-            <div class="end">
+            <div class="three"></div>
+            {#<div class="end">
 
-            </div>
+            </div>#}
+    {#</form>#}
 {% endblock %}
-
