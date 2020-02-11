@@ -62,7 +62,7 @@ def MainPage():
     f4d = Sub8()
     if (request.method == 'POST'):
         s = 0
-        print(request.form)
+        # print(request.form)
         for rec in request.form:
             if rec == 'submit1':
                 s = 1
@@ -82,7 +82,7 @@ def MainPage():
                 s = 8
             bor = []
             bor = sex(s)
-            print(bor)
+            # print(bor)
     cur.execute("select distinct * from exhibitions")
     exhibitions = cur.fetchall()
     j = []
@@ -118,65 +118,71 @@ def MainPage():
 
 
 def sex(s):
+    t=[]
     cur.execute("select distinct price from tickets")
     tic = cur.fetchall()
     for ttic in tic:
-        if s == 2:
-            price = ttic[0]
-        elif s == 1:
-            price = ttic[1]
-        elif s == 4:
-            price = ttic[2]
-        elif s == 3:
-            price = ttic[3]
-        elif s == 6:
-            price = ttic[4]
-        elif s == 5:
-            price = ttic[5]
-        elif s == 8:
-            price = ttic[6]
-        elif s == 7:
-            price = ttic[7]
+        t.append(ttic[0])
+    if s == 2:
+        price = t[0]
+    elif s == 1:
+        price = t[1]
+    elif s == 4:
+        price = t[2]
+    elif s == 3:
+        price = t[3]
+    elif s == 6:
+        price = t[4]
+    elif s == 5:
+        price = t[5]
+    elif s == 8:
+        price = t[6]
+    elif s == 7:
+        price = t[7]
     con.commit()
+    ty = []
     cur.execute("select distinct ttype_name from tickets_types")
     typ = cur.fetchall()
     for ttyp in typ:
-        if s == 2:
-            type = ttyp[0]
-        if s == 1:
-            type = ttyp[1]
-        if s == 4:
-            type = ttyp[0]
-        if s == 3:
-            type = ttyp[1]
-        if s == 6:
-            type = ttyp[0]
-        if s == 5:
-            type = ttyp[1]
-        if s == 8:
-            type = ttyp[0]
-        if s == 7:
-            type = ttyp[1]
+        ty.append(ttyp[0])
+    if s == 2:
+        type = ty[0]
+    if s == 1:
+        type = ty[1]
+    if s == 4:
+        type = ty[0]
+    if s == 3:
+        type = ty[1]
+    if s == 6:
+        type = ty[0]
+    if s == 5:
+        type = ty[1]
+    if s == 8:
+        type = ty[0]
+    if s == 7:
+        type = ty[1]
     con.commit()
+    ex = []
     cur.execute("select distinct * from exhibitions")
     exh = cur.fetchall()
     for eexh in exh:
-        if s == 2:
-            exhibition = eexh[0]
-        if s == 1:
-            exhibition = eexh[0]
-        if s == 4:
-            exhibition = eexh[1]
-        if s == 3:
-            exhibition = eexh[1]
-        if s == 6:
-            exhibition = eexh[2]
-        if s == 5:
-            exhibition = eexh[2]
-        if s == 8:
-            exhibition = eexh[3]
-        if s == 7:
-            exhibition = eexh[3]
+        ex.append(eexh[0])
+    if s == 2:
+        exhibition = ex[0]
+    if s == 1:
+        exhibition = ex[0]
+    if s == 4:
+        exhibition = ex[1]
+    if s == 3:
+        exhibition = ex[1]
+    if s == 6:
+        exhibition = ex[2]
+    if s == 5:
+        exhibition = ex[2]
+    if s == 8:
+        exhibition = ex[3]
+    if s == 7:
+        exhibition = ex[3]
     con.commit()
     ticket = []
     inside = {

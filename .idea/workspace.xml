@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3a3f675-18e5-477a-a625-185f6bd437e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/Search.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Search.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/BASE.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/BASE.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/Loh.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/Loh.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/MainPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/Profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/Profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/SingIn.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/SingIn.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/SingUp.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/SingUp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/BASE.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/BASE.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Loh.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Loh.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/MainPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/MainPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/SingIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/SingIn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/SingUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/SingUp.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +122,7 @@
       <workItem from="1581331979712" duration="1602000" />
       <workItem from="1581348557623" duration="16700000" />
       <workItem from="1581412728227" duration="4457000" />
-      <workItem from="1581435154368" duration="16798000" />
+      <workItem from="1581435154368" duration="20706000" />
     </task>
     <servers />
   </component>
@@ -167,12 +151,12 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app.py</url>
           <line>61</line>
-          <option name="timeStamp" value="18" />
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Lenin_Museum$Lenin_Museum.coverage" NAME="Lenin Museum Coverage Results" MODIFIED="1581458127396" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Lenin_Museum$Lenin_Museum.coverage" NAME="Lenin Museum Coverage Results" MODIFIED="1581462084599" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
