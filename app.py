@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request
 import logging
 from flask_login import LoginManager, logout_user, login_required, login_user, current_user
 from config import Config
-from forms import LoginForm, RegistrationForm, CheckForm, ExtendForm, Sub1, Sub2, Sub3, Sub4, Sub5, Sub6, Sub7, Sub8
+from forms import LoginForm, RegistrationForm, CheckForm, ExtendForm, Sub1, Sub2, Sub3, Sub4, Sub5, Sub6, Sub7, Sub8, Basket
 from flask_login import UserMixin
 #from __init__ import login
 from DB import cur, con
@@ -15,6 +15,10 @@ global passworld
 passworld = ''
 global card
 card = 0
+global tiktok
+tiktok = []
+global tiktok2
+tiktok2 = []
 # Run ######################################################################
 app = Flask(__name__)
 
@@ -80,9 +84,10 @@ def MainPage():
                 s = 7
             if rec == 'submit4d':
                 s = 8
-            bor = []
-            bor = sex(s)
-            # print(bor)
+        bor = []
+        bor = sex(s)
+        print(tiktok)
+        print(tiktok[0])
     cur.execute("select distinct * from exhibitions")
     exhibitions = cur.fetchall()
     j = []
@@ -122,7 +127,10 @@ def sex(s):
     cur.execute("select distinct price from tickets")
     tic = cur.fetchall()
     for ttic in tic:
-        t.append(ttic[0])
+        # t.append(ttic[0])
+        for tttic in ttic:
+            print(tttic)
+            t.append(tttic)
     if s == 2:
         price = t[0]
     elif s == 1:
@@ -144,7 +152,9 @@ def sex(s):
     cur.execute("select distinct ttype_name from tickets_types")
     typ = cur.fetchall()
     for ttyp in typ:
-        ty.append(ttyp[0])
+        # ty.append(ttyp[0])
+        for tttyp in ttyp:
+            ty.append(tttyp)
     if s == 2:
         type = ty[0]
     if s == 1:
@@ -166,7 +176,9 @@ def sex(s):
     cur.execute("select distinct * from exhibitions")
     exh = cur.fetchall()
     for eexh in exh:
-        ex.append(eexh[0])
+        # ex.append(eexh[0])
+        for eeexh in eexh:
+            ex.append(eeexh)
     if s == 2:
         exhibition = ex[0]
     if s == 1:
@@ -184,14 +196,18 @@ def sex(s):
     if s == 7:
         exhibition = ex[3]
     con.commit()
-    ticket = []
-    inside = {
-        'exhibition' : exhibition,
-        'type' : type,
-        'price' : price
+    # ticket = []
+    inside = [exhibition,type,price]
+    inside2 = {
+        'exhibition':exhibition,
+        'type':type,
+        'price':price
     }
-    ticket.append(inside)
-    return ticket
+    tiktok.append(inside)
+    tiktok2.append(inside2)
+    print(tiktok)
+    print(tiktok2)
+    return tiktok
 
 
 @app.route('/SingUp', methods=['GET', 'POST'])
@@ -217,12 +233,16 @@ def SingUp():
 
 @app.route('/Profile', methods=['GET', 'POST'])
 def Profile():
+    f = Basket()
+    yyes = 0
     card = 0
     month = 0
     year = 0
     CVV = 0
     extend = 0
     # extend = 1
+    proverka = 0
+    # proverka = 1
     if usn == '':
         return redirect(url_for('MainPage'))
     user = current_user.username
@@ -231,33 +251,142 @@ def Profile():
     for a_users in userss:
         print(a_users)
         if a_users[1] == user:
+            global tiktok
+            global tiktok2
             extend = 1
             con.commit()
             card = a_users[3]
             month = a_users[4]
             year = a_users[5]
             CVV = a_users[6]
-            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV)
+            con.commit()
+            take = []
+            take = take_tickets()
+            if tiktok != []:
+                proverka = 1
+                print(tiktok)
+                first=[]
+                second=[]
+                third=[]
+                tt = []
+                ttt = []
+                i = 0
+                for tik in tiktok:
+                    print(tik)
+                    first=[]
+                    second=[]
+                    third=[]
+                    tt = []
+                    for tok in tik:
+                        if i == 2:
+                            third.append(tok)
+                            i=0
+                            break
+                        if i == 1:
+                            second.append(tok)
+                            i+=1
+                        if i == 0:
+                            first.append(tok)
+                            i+=1
+                    tt.append(first)
+                    tt.append(second)
+                    tt.append(third)
+                    ttt.append(tt)
+                print(ttt)
+            if request.method == 'POST':
+                for rec in request.form:
+                    if rec == 'yes':
+                        if tiktok == []:
+                            break
+                        yyes = 1
+                    if rec == 'no':
+                        tiktok = []
+                        tiktok2 = []
+                        proverka = 0
+                    if rec == 'yes2':
+                        print(f.CVV.data)
+                        if f.CVV.data == CVV:
+                            tickets_for_customers(ttt)
+                            tiktok = []
+                            tiktok2 = []
+                            proverka = 0
+                            take = take_tickets()
+                            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take)
+            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take)
     con.commit()
     form = ExtendForm()
     if request.method == 'POST':
-        card = form.card.data
-        month = form.month.data
-        year = form.year.data
-        CVV = form.CVV.data
+        for rec in request.form:
+            if rec == 'submit':
+                card = form.card.data
+                month = form.month.data
+                year = form.year.data
+                CVV = form.CVV.data
+                try:
+                    cur.execute("INSERT INTO cards (id, login, password, card№, card_month, card_year, card_cvv)"
+                            "VALUES ({}, '{}', '{}', {}, {}, {}, {})".format(current_user.id, current_user.username, passworld, card, month, year, CVV))
+                    con.commit()
+                    extend = 1
+                    return render_template('Profile.html', form=form, extend=extend, card=card, month=month, year=year, CVV=CVV)
+                except:
+                    logging.exception('')
+                    print('wrong')
+                    cur.execute("ROLLBACK")
+                    con.commit()
+            if rec == 'yes':
+                yyes = 1
+    return render_template('Profile.html', form=form, extend=extend, f=f, yyes=yyes)
+    # return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, proverka=proverka, tiktok2=tiktok2)
+
+
+def take_tickets():
+    cur.execute("select * from tickets_for_customers")
+    tic = cur.fetchall()
+    vivod = []
+    for t in tic:
+        print(t[1])
+        if t[1] == current_user.username:
+            list = {
+                'exhib':t[3],
+                'typ':t[4],
+                'pric':t[6]
+            }
+            vivod.append(list)
+    con.commit()
+    return vivod
+
+
+def tickets_for_customers(ttt):
+    print(ttt)
+    i = 0
+    fir=''
+    sec=''
+    thr=''
+    for ticket in ttt:
+        for t in ticket:
+            for ti in t:
+                if i == 2:
+                    thr=ti
+                    i=0
+                    break
+                if i == 1:
+                    sec=ti
+                    i+=1
+                if i == 0:
+                    fir=ti
+                    i+=1
         try:
-            cur.execute("INSERT INTO cards (id, login, password, card№, card_month, card_year, card_cvv)"
-                    "VALUES ({}, '{}', '{}', {}, {}, {}, {})".format(current_user.id, current_user.username, passworld, card, month, year, CVV))
+            cur.execute("INSERT INTO tickets_for_customers (id, login, password, exhibition_name, ttype_name, price)"
+                        "VALUES ({}, '{}', '{}', '{}', '{}', '{}')".format(current_user.id, current_user.username, passworld, fir, sec, thr))
             con.commit()
-            extend = 1
-            return render_template('Profile.html', form=form, extend=extend, card=card, month=month, year=year, CVV=CVV)
         except:
             logging.exception('')
             print('wrong')
             cur.execute("ROLLBACK")
             con.commit()
-    return render_template('Profile.html', form=form, extend=extend)
-    # return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV)
+        fir=''
+        sec=''
+        thr=''
 
 
 @app.route('/Loh', methods=['GET', 'POST'])
@@ -322,12 +451,20 @@ def SingIn():
 
 @app.route('/Logout')
 def Logout():
+    global tiktok
+    global tiktok2
+    tiktok = []
+    tiktok2 = []
     logout_user()
     return redirect(url_for('MainPage'))
 
 
 @app.route('/logout')
 def logout():
+    global tiktok
+    global tiktok2
+    tiktok = []
+    tiktok2 = []
     logout_user()
     return redirect(url_for('SingIn'))
 

@@ -40,6 +40,14 @@
                     <div class="CVV1"><h4>***</h4></div>
                     <h3>/</h3>
                 </div>
+                <div class="have">
+                <h6>Ваши билеты:</h6>
+                    {% for tk in take %}
+                        <div class="inin">
+                            <h6>Выставка::{{ tk.exhib }} | Тип билета::{{ tk.typ }} | Стоимость::{{ tk.pric }}</h6>
+                        </div>
+                    {% endfor %}
+                </div>
             {% else %}
                 <p>Может быть Вы хотите добавить еще немного информации о себе?<br>Это позволит Вам покупать и оплачивать билеты.</p>
                 <br>
@@ -65,6 +73,33 @@
         </div>
     </div>
     </form>
+
     <div class="krug"></div>
     <img src="https://pa1.narvii.com/7015/07fdf723dc0fc3922df9fc2e5febeec4de6ae2b0r1-320-270_hq.gif" class="imag">
+    {% if card %}
+        <div class="basket">
+            <h1>Корзина</h1>
+            <div class="inside">
+                {% if proverka == 0 %}
+                    <h6>Пока что тут пусто</h6>
+                {% else %}
+                    {% for tok in tiktok2 %}
+                        <div class="inin">
+                            <h6>Выставка::{{ tok.exhibition }} | Тип билета::{{ tok.type }} | Стоимость::{{ tok.price }}</h6>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% if yyes == 0 %}
+                <div class="yes"><form action="" method="post" novalidate>{{ f.yes }}</form></div>
+                <div class="no"><form action="" method="post" novalidate>{{ f.no }}</form></div>
+            {% else %}
+                <form action="" method="post" novalidate>
+                    {{ f.hidden_tag() }}
+                    <div class="yes">{{ f.CVV(placeholder="Введите CVV") }}</div>
+                    <div class="no2">{{ f.yes2 }}</div>
+                </form>
+            {% endif %}
+        </div>
+    {% endif %}
 {% endblock %}

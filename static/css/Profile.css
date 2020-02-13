@@ -200,3 +200,109 @@ input[type="checkbox"]:checked ~ .ch::before{
     border-radius: 50%;
     transition: 0.3s;
 }
+.basket{
+    width: 1000px;
+    height: 600px;
+    position: absolute;
+    top: 9%;
+    left: 45%;
+    background: darkslategrey;
+    border-radius: 20px;
+    color: white;
+    padding: 20px;
+}
+.inside{
+    width: 900px;
+    height: 400px;
+    background: dimgrey;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    border-radius: 20px;
+    padding: 20px;
+    overflow: auto;
+}
+.yes{
+    position: absolute;
+    top: 90%;
+    left: 10%;
+}
+.no{
+    position: absolute;
+    top: 90%;
+    right: 15%;
+}
+.no2{
+    position: absolute;
+    top: 90%;
+    right: 15%;
+}
+.yes input[type="submit"]{
+    border: none;
+    outline: none;
+    width: 100px;
+    height: 40px;
+    background: #ff7f48;
+    color: #ffffff;
+    font-size: 13px;
+    border-radius: 20px;
+    position: absolute;
+    top: 60%;
+    left: calc(50% - 50px);
+}
+.yes input[type="submit"]:hover{
+    cursor: pointer;
+    background: #ff0c32;
+    color: #000000;
+}
+.no input[type="submit"]{
+    border: none;
+    outline: none;
+    width: 150px;
+    height: 40px;
+    background: dimgrey;
+    color: #ffffff;
+    font-size: 13px;
+    border-radius: 20px;
+    position: absolute;
+    top: 60%;
+    left: calc(50% - 50px);
+}
+.no input[type="submit"]:hover{
+    cursor: pointer;
+    background: black;
+    color: #ffffff;
+}
+.no2 input[type="submit"]{
+    border: none;
+    outline: none;
+    width: 150px;
+    height: 40px;
+    background: #ff7f48;
+    color: #ffffff;
+    font-size: 13px;
+    border-radius: 20px;
+    position: absolute;
+    top: 60%;
+    left: calc(50% - 50px);
+}
+.no2 input[type="submit"]:hover{
+    cursor: pointer;
+    background: #ff0c32;
+    color: #000000;
+}
+.inin h6{
+    text-align: center;
+    font-size: 20px;
+}
+.have{
+    width: 500px;
+    height: 200px;
+    position: absolute;
+    top: 75%;
+    left: 6%;
+    background: dimgrey;
+    overflow: auto;
+    border-radius: 20px;
+    padding: 20px;
+}

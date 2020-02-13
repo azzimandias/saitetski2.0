@@ -29,18 +29,7 @@ class ExtendForm(FlaskForm):
     year = IntegerField('year', validators=[DataRequired()])
     CVV = IntegerField('CVV', validators=[DataRequired()])
     submit = SubmitField('Добавить')
-    # username = StringField('Имя пользователя', validators=[DataRequired()])
-    # password = PasswordField('Пароль', validators=[DataRequired()])
 
-# class AllSubmits(FlaskForm):
-#     submit1 = SubmitField('Добавить в корзину')
-#     submit1d = SubmitField('Добавить в корзину')
-#     submit2 = SubmitField('Добавить в корзину')
-#     submit2d = SubmitField('Добавить в корзину')
-#     submit3 = SubmitField('Добавить в корзину')
-#     submit3d = SubmitField('Добавить в корзину')
-#     submit4 = SubmitField('Добавить в корзину')
-#     submit4d = SubmitField('Добавить в корзину')
 
 class Sub1(FlaskForm):
     submit1 = SubmitField('Добавить в корзину')
@@ -58,6 +47,12 @@ class Sub7(FlaskForm):
     submit4 = SubmitField('Добавить в корзину')
 class Sub8(FlaskForm):
     submit4d = SubmitField('Добавить в корзину')
+
+class Basket(FlaskForm):
+    yes = SubmitField('Купить')
+    no = SubmitField('Очистить корзину')
+    CVV = IntegerField('Введите CVV карты', validators=[DataRequired()])
+    yes2 = SubmitField('Подтвердить')
 
     def validate_username(self, username):
         cur.execute("SELECT login FROM customers")

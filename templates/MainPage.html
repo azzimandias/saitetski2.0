@@ -78,10 +78,10 @@
                                 Этаж:{{ floor1 }}<br><br><br>
                                 Стоимость - обычный билет:{{ price1 }}<br><br>
                                             детский билет:{{ price1d }}</h3>
-                            {#{% if current_user.username %}#}
+                            {% if current_user.username %}
                                 <div class="up"><form action="" method="post" name="f1" novalidate>{{ f1.submit1()}} {{ f1.csrf_token }}</form></div>
                                 <div class="down"><form action="" method="post" novalidate>{{ f1d.submit1d()}} {{ f1d.csrf_token }}</form></div>
-                            {#{% endif %}#}
+                            {% endif %}
                         </div>
                         <div class="slide s2">
                             {#<img src="https://s2.best-wallpaper.net/wallpaper/3840x1200/1607/Dolomites-sunrise-snow-winter-Italy_3840x1200.jpg">#}
@@ -92,10 +92,10 @@
                                 Этаж:{{ floor2 }}<br><br><br>
                                 Стоимость - обычный билет:{{ price2 }}<br><br>
                                             детский билет:{{ price2d }}</h3>
-                            {#{% if current_user.username %}#}
+                            {% if current_user.username %}
                                 <div class="up"><form action="" method="post" novalidate>{{ f2.submit2()}} {{ f2.csrf_token }}</form></div>
                                 <div class="down"><form action="" method="post" novalidate>{{ f2d.submit2d()}}  {{ f2d.csrf_token }}</form></div>
-                            {#{% endif %}#}
+                            {% endif %}
                         </div>
                         <div class="slide s3">
                             {#<img src="http://getwallpapers.com/wallpaper/full/9/a/e/576049.jpg">#}
@@ -106,10 +106,10 @@
                                 Этаж:{{ floor3 }}<br><br><br>
                                 Стоимость - обычный билет:{{ price3 }}<br><br>
                                             детский билет:{{ price3d }}</h3>
-                            {#{% if current_user.username %}#}
+                            {% if current_user.username %}
                                 <div class="up"><form action="" method="post" novalidate>{{ f3.submit3()}} {{ f3.csrf_token }}</form></div>
                                 <div class="down"><form action="" method="post" novalidate>{{ f3d.submit3d()}} {{ f3d.csrf_token }}</form></div>
-                            {#{% endif %}#}
+                            {% endif %}
                         </div>
                         <div class="slide s4">
                             {#<img src="https://www.tokkoro.com/picsup/1386619-landscape.jpg">#}
@@ -119,10 +119,10 @@
                                 Этаж:{{ floor4 }}<br><br><br>
                                 Стоимость - обычный билет:{{ price4 }}<br><br>
                                             детский билет:{{ price4d }}</h3>
-                            {#{% if current_user.username %}#}
+                            {% if current_user.username %}
                                 <div class="up"><form action="" method="post" novalidate>{{ f4.submit4()}} {{ f4.csrf_token }}</form></div>
                                 <div class="down"><form action="" method="post" novalidate>{{ f4d.submit4d()}} {{ f4d.csrf_token }}</form></div>
-                            {#{% endif %}#}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="naw">
