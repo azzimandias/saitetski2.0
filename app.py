@@ -235,14 +235,8 @@ def SingUp():
 def Profile():
     f = Basket()
     yyes = 0
-    card = 0
-    month = 0
-    year = 0
-    CVV = 0
     extend = 0
-    # extend = 1
     proverka = 0
-    # proverka = 1
     if usn == '':
         return redirect(url_for('MainPage'))
     user = current_user.username
@@ -260,37 +254,17 @@ def Profile():
             year = a_users[5]
             CVV = a_users[6]
             con.commit()
-            take = []
             take = take_tickets()
-            if tiktok != []:
+            if tiktok2 != []:
                 proverka = 1
-                print(tiktok)
-                first=[]
-                second=[]
-                third=[]
+                print(tiktok2)
                 tt = []
                 ttt = []
                 i = 0
-                for tik in tiktok:
+                for tik in tiktok2:
                     print(tik)
-                    first=[]
-                    second=[]
-                    third=[]
-                    tt = []
                     for tok in tik:
-                        if i == 2:
-                            third.append(tok)
-                            i=0
-                            break
-                        if i == 1:
-                            second.append(tok)
-                            i+=1
-                        if i == 0:
-                            first.append(tok)
-                            i+=1
-                    tt.append(first)
-                    tt.append(second)
-                    tt.append(third)
+                        tt.append(tok)
                     ttt.append(tt)
                 print(ttt)
             if request.method == 'POST':
@@ -310,7 +284,7 @@ def Profile():
                     if rec == 'yes2':
                         print(f.CVV.data)
                         if f.CVV.data == CVV:
-                            tickets_for_customers(ttt)
+                            tickets_for_customers()
                             tiktok = []
                             tiktok2 = []
                             proverka = 0
@@ -361,37 +335,21 @@ def take_tickets():
     return vivod
 
 
-def tickets_for_customers(ttt):
-    print(ttt)
-    i = 0
-    fir=''
-    sec=''
-    thr=''
-    for ticket in ttt:
-        for t in ticket:
-            for ti in t:
-                if i == 2:
-                    thr=ti
-                    i=0
-                    break
-                if i == 1:
-                    sec=ti
-                    i+=1
-                if i == 0:
-                    fir=ti
-                    i+=1
+def tickets_for_customers():
+    for ticket in tiktok2:
+        print(ticket['exhibition'])
+        print(ticket['type'])
+        print(ticket['price'])
         try:
             cur.execute("INSERT INTO tickets_for_customers (id, login, password, exhibition_name, ttype_name, price)"
-                        "VALUES ({}, '{}', '{}', '{}', '{}', '{}')".format(current_user.id, current_user.username, passworld, fir, sec, thr))
+                        "VALUES ({}, '{}', '{}', '{}', '{}', '{}')".format(current_user.id, current_user.username, passworld, ticket['exhibition'], ticket['type'], ticket['price']))
             con.commit()
         except:
             logging.exception('')
             print('wrong')
             cur.execute("ROLLBACK")
             con.commit()
-        fir=''
-        sec=''
-        thr=''
+
 
 
 @app.route('/Loh', methods=['GET', 'POST'])
