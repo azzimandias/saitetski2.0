@@ -294,6 +294,10 @@ def Profile():
                     ttt.append(tt)
                 print(ttt)
             if request.method == 'POST':
+                card = a_users[3]
+                month = a_users[4]
+                year = a_users[5]
+                CVV = a_users[6]
                 for rec in request.form:
                     if rec == 'yes':
                         if tiktok == []:
@@ -347,6 +351,7 @@ def take_tickets():
         print(t[1])
         if t[1] == current_user.username:
             list = {
+                'tic':t[7],
                 'exhib':t[3],
                 'typ':t[4],
                 'pric':t[6]

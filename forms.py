@@ -54,11 +54,11 @@ class Basket(FlaskForm):
     CVV = IntegerField('Введите CVV карты', validators=[DataRequired()])
     yes2 = SubmitField('Подтвердить')
 
-    def validate_username(self, username):
-        cur.execute("SELECT login FROM customers")
-        loginList = cur.fetchall()
-        for login in loginList:
-            if username.data == login[0]:
-                raise ValidationError('Это имя пользователя занято, придумайте другое.')
-                raise ValidationError('Please use a different username.')
+    # def validate_username(self, username):
+    #     cur.execute("SELECT login FROM customers")
+    #     loginList = cur.fetchall()
+    #     for login in loginList:
+    #         if username.data == login[0]:
+    #             raise ValidationError('Это имя пользователя занято, придумайте другое.')
+    #             raise ValidationError('Please use a different username.')
 
