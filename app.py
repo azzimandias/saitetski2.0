@@ -54,6 +54,7 @@ class User(UserMixin):
 # Routes ######################################################################
 @app.route('/', methods=['GET', 'POST'])
 def MainPage():
+    Poi = SS()
     f1 = Sub1()
     f1d = Sub2()
     f2 = Sub3()
@@ -63,6 +64,11 @@ def MainPage():
     f4 = Sub7()
     f4d = Sub8()
     if (request.method == 'POST'):
+        dodik = Poi.poisk.data
+        recc = request.form
+        mama = redir(dodik,recc)
+        if mama:
+            return redirect(url_for('Seach'))
         s = 0
         # print(request.form)
         for rec in request.form:
@@ -114,11 +120,15 @@ def MainPage():
                                             hall_name1=i[0], hall_name2=i[1], hall_name3=i[2], hall_name4=i[3],
                                             floor1=f[0], floor2=f[1], floor3=f[2], floor4=f[3],
                                             price1=p[1], price1d=p[0], price2=p[3], price2d=p[2], price3=p[5], price3d=p[4], price4=p[7], price4d=p[6],
-                                            f1=f1, f1d=f1d, f2=f2, f2d=f2d, f3=f3, f3d=f3d, f4=f4, f4d=f4d)
+                                            f1=f1, f1d=f1d, f2=f2, f2d=f2d, f3=f3, f3d=f3d, f4=f4, f4d=f4d,
+                                            Poi=Poi)
 
 
 def sex(s):
     t=[]
+    exhibition = ''
+    type = ''
+    price = ''
     cur.execute("select distinct price from tickets")
     tic = cur.fetchall()
     for ttic in tic:
@@ -203,10 +213,17 @@ def sex(s):
 
 @app.route('/SingUp', methods=['GET', 'POST'])
 def SingUp():
+    Poi = SS()
     #return render_template('SingUp.html')
     if current_user.is_authenticated:
         return redirect(url_for('MainPage'))
     reg_form = RegistrationForm()
+    if request.method == 'POST':
+        dodik = Poi.poisk.data
+        recc = request.form
+        mama = redir(dodik,recc)
+        if mama:
+            return redirect(url_for('Seach'))
     if reg_form.validate_on_submit():
         print('form.register succeed')
         try:
@@ -219,11 +236,12 @@ def SingUp():
             cur.execute("ROLLBACK")
             con.commit()
         return redirect(url_for('SingIn'))
-    return render_template('SingUp.html', form=reg_form)
+    return render_template('SingUp.html', form=reg_form, Poi=Poi)
 
 
 @app.route('/Profile', methods=['GET', 'POST'])
 def Profile():
+    Poi = SS()
     f = Basket()
     yyes = 0
     extend = 0
@@ -258,6 +276,11 @@ def Profile():
                     ttt.append(tt)
                 print(ttt)
             if request.method == 'POST':
+                dodik = Poi.poisk.data
+                recc = request.form
+                mama = redir(dodik,recc)
+                if mama:
+                    return redirect(url_for('Seach'))
                 card = a_users[3]
                 month = a_users[4]
                 year = a_users[5]
@@ -277,11 +300,16 @@ def Profile():
                             tiktok2 = []
                             proverka = 0
                             take = take_tickets()
-                            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take)
-            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take)
+                            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take, Poi=Poi)
+            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take, Poi=Poi)
     con.commit()
     form = ExtendForm()
     if request.method == 'POST':
+        dodik = Poi.poisk.data
+        recc = request.form
+        mama = redir(dodik,recc)
+        if mama:
+            return redirect(url_for('Seach'))
         for rec in request.form:
             if rec == 'submit':
                 card = form.card.data
@@ -293,7 +321,7 @@ def Profile():
                             "VALUES ({}, '{}', '{}', {}, {}, {}, {})".format(current_user.id, current_user.username, passworld, card, month, year, CVV))
                     con.commit()
                     extend = 1
-                    return render_template('Profile.html', form=form, extend=extend, card=card, month=month, year=year, CVV=CVV)
+                    return render_template('Profile.html', form=form, extend=extend, card=card, month=month, year=year, CVV=CVV, Poi=Poi)
                 except:
                     logging.exception('')
                     print('wrong')
@@ -301,8 +329,8 @@ def Profile():
                     con.commit()
             if rec == 'yes':
                 yyes = 1
-    return render_template('Profile.html', form=form, extend=extend, f=f, yyes=yyes)
-    # return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, proverka=proverka, tiktok2=tiktok2)
+    return render_template('Profile.html', form=form, extend=extend, f=f, yyes=yyes, Poi=Poi)
+    # return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, proverka=proverka, tiktok2=tiktok2, Poi=Poi)
 
 
 def take_tickets():
@@ -342,10 +370,17 @@ def tickets_for_customers():
 
 @app.route('/Loh', methods=['GET', 'POST'])
 def Loh():
+    Poi = SS()
     pas = ''
     if current_user.is_authenticated:
         return redirect(url_for('MainPage'))
     form = CheckForm()
+    if request.method == 'POST':
+        dodik = Poi.poisk.data
+        recc = request.form
+        mama = redir(dodik,recc)
+        if mama:
+            return redirect(url_for('Seach'))
     if form.validate_on_submit():
         username = form.username.data
         cur.execute("select * from customers")
@@ -354,16 +389,24 @@ def Loh():
             print(a_user)
             if a_user[1] == username:
                 pas = a_user[2]
-    return render_template('Loh.html', form=form, pas=pas)
+    return render_template('Loh.html', form=form, pas=pas, Poi=Poi)
 
 
 @app.errorhandler(404)
 def Fourzerofour(e):
-    return render_template('ErrorPage.html'), 404
+    Poi = SS()
+    if request.method == 'POST':
+        dodik = Poi.poisk.data
+        recc = request.form
+        mama = redir(dodik,recc)
+        if mama:
+            return redirect(url_for('Seach'))
+    return render_template('ErrorPage.html', Poi=Poi), 404
 
 
 @app.route('/SingIn', methods=['GET', 'POST'])
 def SingIn():
+    Poi = SS()
     global a, passworld
     global usn
     if a == 0:
@@ -372,6 +415,12 @@ def SingIn():
         return redirect(url_for('MainPage'))
     form = LoginForm()
     a = 1
+    if request.method == 'POST':
+        dodik = Poi.poisk.data
+        recc = request.form
+        mama = redir(dodik,recc)
+        if mama:
+            return redirect(url_for('Seach'))
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
@@ -397,7 +446,7 @@ def SingIn():
                 login_user(user, remember=form.remember_me.data)
                 passworld = password
                 return redirect(url_for('Profile'))
-    return render_template('SingIn.html', title='Sign In', form=form)
+    return render_template('SingIn.html', title='Sign In', form=form, Poi=Poi)
 
 
 @app.route('/Logout')
@@ -420,10 +469,20 @@ def Seach():
     Poi = SS()
     if request.method == 'POST':
         dodik = Poi.poisk.data
-        for rec in request.form:
+        recc = request.form
+        for rec in recc:
             if rec == 'sub':
                 Poisk(dodik)
     return render_template('Search.html', Poi=Poi)
+
+
+def redir(dodik, recc):
+    mama = 0
+    for rec in recc:
+        if rec == 'sub':
+            Poisk(dodik)
+            mama = 1
+    return mama
 
 
 def Poisk(dodik):
