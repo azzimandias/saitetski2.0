@@ -29,7 +29,6 @@
 {% endblock %}
 
 {% block content %}
-    {#<form action="" method="post" novalidate>#}
             <div class="head">
                 <h1>Добро пожаловать</h1>
                 {% if current_user.username %}
@@ -46,7 +45,9 @@
             <div class="fox1"><img src="https://wmpics.pics/di-JFAX.gif" class="fox"></div>
             <div class="one">
                 <h2>Немного о нашем музее</h2><br>
-                <p>Здравствуйте! Вы можете зарегистрироваться на сайте или войти, если у Вас уже есть аккаунт. Расширить функции аккаунта, добавив больше данных о себе. Дальше можно ознакомиться с выставками в нашем музее и добавить в корзину билеты и приобрести их </p>
+                <p>Здравствуйте! <br>Вы можете зарегистрироваться на сайте или войти, если у Вас уже есть аккаунт.
+                                 <br>Расширить функции аккаунта, добавив больше данных о себе.
+                                 <br>Дальше можно ознакомиться с выставками в нашем музее и добавить в корзину билеты и приобрести их.<br><br><br></p>
             </div>
             <div class="mid">
 
@@ -61,16 +62,7 @@
                         <input type="radio" name="r" id="r2">
                         <input type="radio" name="r" id="r3">
                         <input type="radio" name="r" id="r4">
-                        {#<input type="radio" name="b" id="b1">
-                        <input type="radio" name="b" id="b2">
-                        <input type="radio" name="b" id="b3">
-                        <input type="radio" name="b" id="b4">
-                        <input type="radio" name="b" id="b5">
-                        <input type="radio" name="b" id="b6">#}
-{#                        <h2>{{ exhibition1 }}</h2>#}
                         <div class="slide s1">
-                            {#<img src="https://s2.best-wallpaper.net/wallpaper/3840x1200/1906/Banff-National-Park-Canada-trees-lake-water-reflection_3840x1200.jpg ">#}
-                            {#<label for="b1" class="rig1"></label>#}
                             <h2>{{ exhibition1 }}</h2>
                             <h3>Зал:{{ hall_name1 }}<br><br><br>
                                 Этаж:{{ floor1 }}<br><br><br>
@@ -82,9 +74,6 @@
                             {% endif %}
                         </div>
                         <div class="slide s2">
-                            {#<img src="https://s2.best-wallpaper.net/wallpaper/3840x1200/1607/Dolomites-sunrise-snow-winter-Italy_3840x1200.jpg">#}
-                            {#<label for="b2" class="lef2"></label>
-                            <label for="b3" class="rig2"></label>#}
                             <h2>{{ exhibition2 }}</h2>
                             <h3>Зал:{{ hall_name2 }}<br><br><br>
                                 Этаж:{{ floor2 }}<br><br><br>
@@ -96,9 +85,6 @@
                             {% endif %}
                         </div>
                         <div class="slide s3">
-                            {#<img src="http://getwallpapers.com/wallpaper/full/9/a/e/576049.jpg">#}
-                            {#<label for="b4" class="lef3"></label>
-                            <label for="b5" class="rig3"></label>#}
                             <h2>{{ exhibition3 }}</h2>
                             <h3>Зал:{{ hall_name3 }}<br><br><br>
                                 Этаж:{{ floor3 }}<br><br><br>
@@ -110,8 +96,6 @@
                             {% endif %}
                         </div>
                         <div class="slide s4">
-                            {#<img src="https://www.tokkoro.com/picsup/1386619-landscape.jpg">#}
-                            {#<label for="b6" class="lef4"></label>#}
                             <h2>{{ exhibition4 }}</h2>
                             <h3>Зал:{{ hall_name4 }}<br><br><br>
                                 Этаж:{{ floor4 }}<br><br><br>
@@ -132,8 +116,4 @@
                 </div>
             </div>
             <div class="three"></div>
-            {#<div class="end">
-
-            </div>#}
-    {#</form>#}
 {% endblock %}

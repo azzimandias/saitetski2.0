@@ -54,6 +54,12 @@ class Basket(FlaskForm):
     CVV = IntegerField('Введите CVV карты', validators=[DataRequired()])
     yes2 = SubmitField('Подтвердить')
 
+
+class SS(FlaskForm):
+    poisk = StringField('Poisk', validators=[DataRequired()])
+
+
+
     # def validate_username(self, username):
     #     cur.execute("SELECT login FROM customers")
     #     loginList = cur.fetchall()

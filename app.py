@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request
 import logging
 from flask_login import LoginManager, logout_user, login_required, login_user, current_user
 from config import Config
-from forms import LoginForm, RegistrationForm, CheckForm, ExtendForm, Sub1, Sub2, Sub3, Sub4, Sub5, Sub6, Sub7, Sub8, Basket
+from forms import LoginForm, RegistrationForm, CheckForm, ExtendForm, Sub1, Sub2, Sub3, Sub4, Sub5, Sub6, Sub7, Sub8, Basket, SS
 from flask_login import UserMixin
 #from __init__ import login
 from DB import cur, con
@@ -15,8 +15,6 @@ global passworld
 passworld = ''
 global card
 card = 0
-global tiktok
-tiktok = []
 global tiktok2
 tiktok2 = []
 # Run ######################################################################
@@ -84,10 +82,7 @@ def MainPage():
                 s = 7
             if rec == 'submit4d':
                 s = 8
-        bor = []
-        bor = sex(s)
-        print(tiktok)
-        print(tiktok[0])
+        sex(s)
     cur.execute("select distinct * from exhibitions")
     exhibitions = cur.fetchall()
     j = []
@@ -196,18 +191,14 @@ def sex(s):
     if s == 7:
         exhibition = ex[3]
     con.commit()
-    # ticket = []
-    inside = [exhibition,type,price]
     inside2 = {
         'exhibition':exhibition,
         'type':type,
         'price':price
     }
-    tiktok.append(inside)
     tiktok2.append(inside2)
-    print(tiktok)
     print(tiktok2)
-    return tiktok
+    return tiktok2
 
 
 @app.route('/SingUp', methods=['GET', 'POST'])
@@ -245,7 +236,6 @@ def Profile():
     for a_users in userss:
         print(a_users)
         if a_users[1] == user:
-            global tiktok
             global tiktok2
             extend = 1
             con.commit()
@@ -274,18 +264,16 @@ def Profile():
                 CVV = a_users[6]
                 for rec in request.form:
                     if rec == 'yes':
-                        if tiktok == []:
+                        if tiktok2 == []:
                             break
                         yyes = 1
                     if rec == 'no':
-                        tiktok = []
                         tiktok2 = []
                         proverka = 0
                     if rec == 'yes2':
                         print(f.CVV.data)
                         if f.CVV.data == CVV:
                             tickets_for_customers()
-                            tiktok = []
                             tiktok2 = []
                             proverka = 0
                             take = take_tickets()
@@ -414,9 +402,7 @@ def SingIn():
 
 @app.route('/Logout')
 def Logout():
-    global tiktok
     global tiktok2
-    tiktok = []
     tiktok2 = []
     logout_user()
     return redirect(url_for('MainPage'))
@@ -424,13 +410,23 @@ def Logout():
 
 @app.route('/logout')
 def logout():
-    global tiktok
     global tiktok2
-    tiktok = []
     tiktok2 = []
     logout_user()
     return redirect(url_for('SingIn'))
 
-@app.route('/Search')
+@app.route('/Search', methods=['GET', 'POST'])
 def Seach():
-    return render_template('Search.html')
+    Poi = SS()
+    if request.method == 'POST':
+        dodik = Poi.poisk.data
+        for rec in request.form:
+            if rec == 'sub':
+                Poisk(dodik)
+    return render_template('Search.html', Poi=Poi)
+
+
+def Poisk(dodik):
+    print(dodik)
+    return 0
+
