@@ -24,3 +24,14 @@ body{
     background: darkslategray;
     box-shadow:  0 0 20px rgba(0,0,0,0.5);
 }
+.collapse input[type="text"]{
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    background: transparent;
+    outline: none;
+    width: 300px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+}

@@ -18,15 +18,6 @@
     <div class="loginbox">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Creative-Tail-Animal-zebra.svg/256px-Creative-Tail-Animal-zebra.svg.png" class="avatar">
         <h1>Логинься уже!</h1>
-        {#<form>
-            <p>Логин</p>
-            <input type="text" name="" placeholder="Введите имя пользователя">
-            <p>Пароль</p>
-            <input type="password" name="" placeholder="Введите пароль"><br>
-            <input type="submit" name="" value="OK!"><br>
-            <a href="{{ url_for('Loh') }}">Забыли пароль?</a><br>
-            <a href="{{ url_for('SingUp') }}">Хотите зарегистрироваться?</a>
-        </form>#}
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
             <p>

@@ -7,16 +7,13 @@ from forms import LoginForm, RegistrationForm, CheckForm, ExtendForm, Sub1, Sub2
 from flask_login import UserMixin
 #from __init__ import login
 from DB import cur, con
-global usn
 usn = ''
-global a
 a = 0
-global passworld
 passworld = ''
-global card
 card = 0
-global tiktok2
 tiktok2 = []
+exhibits_list = []
+dodik = ''
 # Run ######################################################################
 app = Flask(__name__)
 
@@ -40,20 +37,19 @@ class User(UserMixin):
 
     def set_username(self):
         if a == 1:
-            # cur.execute("select login from customers")
-            # username = cur.fetchone()
-            self.username = usn  # username[0]
+            self.username = usn
             con.commit()
         elif a == 2:
-            # cur.execute("select name from employees")
-            # username = cur.fetchone()
-            self.username = usn # username[0]
+            self.username = usn
             con.commit()
 
 
 # Routes ######################################################################
 @app.route('/', methods=['GET', 'POST'])
 def MainPage():
+    global exhibits_list, dodik
+    cur.execute("set lc_monetary to 'Russian_Russia.UTF-8'")
+    con.commit()
     Poi = SS()
     f1 = Sub1()
     f1d = Sub2()
@@ -66,11 +62,11 @@ def MainPage():
     if (request.method == 'POST'):
         dodik = Poi.poisk.data
         recc = request.form
-        mama = redir(dodik,recc)
+        mama = redir(recc)
         if mama:
-            return redirect(url_for('Seach'))
+            Poisk()
+            return redirect(url_for('Search'))
         s = 0
-        # print(request.form)
         for rec in request.form:
             if rec == 'submit1':
                 s = 1
@@ -132,7 +128,6 @@ def sex(s):
     cur.execute("select distinct price from tickets")
     tic = cur.fetchall()
     for ttic in tic:
-        # t.append(ttic[0])
         for tttic in ttic:
             print(tttic)
             t.append(tttic)
@@ -157,7 +152,6 @@ def sex(s):
     cur.execute("select distinct ttype_name from tickets_types")
     typ = cur.fetchall()
     for ttyp in typ:
-        # ty.append(ttyp[0])
         for tttyp in ttyp:
             ty.append(tttyp)
     if s == 2:
@@ -181,7 +175,6 @@ def sex(s):
     cur.execute("select distinct * from exhibitions")
     exh = cur.fetchall()
     for eexh in exh:
-        # ex.append(eexh[0])
         for eeexh in eexh:
             ex.append(eeexh)
     if s == 2:
@@ -213,17 +206,18 @@ def sex(s):
 
 @app.route('/SingUp', methods=['GET', 'POST'])
 def SingUp():
+    global dodik
     Poi = SS()
-    #return render_template('SingUp.html')
     if current_user.is_authenticated:
         return redirect(url_for('MainPage'))
     reg_form = RegistrationForm()
     if request.method == 'POST':
         dodik = Poi.poisk.data
         recc = request.form
-        mama = redir(dodik,recc)
+        mama = redir(recc)
         if mama:
-            return redirect(url_for('Seach'))
+            Poisk()
+            return redirect(url_for('Search'))
     if reg_form.validate_on_submit():
         print('form.register succeed')
         try:
@@ -241,6 +235,7 @@ def SingUp():
 
 @app.route('/Profile', methods=['GET', 'POST'])
 def Profile():
+    global dodik
     Poi = SS()
     f = Basket()
     yyes = 0
@@ -278,9 +273,10 @@ def Profile():
             if request.method == 'POST':
                 dodik = Poi.poisk.data
                 recc = request.form
-                mama = redir(dodik,recc)
+                mama = redir(recc)
                 if mama:
-                    return redirect(url_for('Seach'))
+                    Poisk()
+                    return redirect(url_for('Search'))
                 card = a_users[3]
                 month = a_users[4]
                 year = a_users[5]
@@ -307,26 +303,21 @@ def Profile():
     if request.method == 'POST':
         dodik = Poi.poisk.data
         recc = request.form
-        mama = redir(dodik,recc)
+        mama = redir(recc)
         if mama:
-            return redirect(url_for('Seach'))
+            Poisk()
+            return redirect(url_for('Search'))
         for rec in request.form:
             if rec == 'submit':
                 card = form.card.data
                 month = form.month.data
                 year = form.year.data
                 CVV = form.CVV.data
-                try:
-                    cur.execute("INSERT INTO cards (id, login, password, card№, card_month, card_year, card_cvv)"
+                cur.execute("INSERT INTO cards (id, login, password, card№, card_month, card_year, card_cvv)"
                             "VALUES ({}, '{}', '{}', {}, {}, {}, {})".format(current_user.id, current_user.username, passworld, card, month, year, CVV))
-                    con.commit()
-                    extend = 1
-                    return render_template('Profile.html', form=form, extend=extend, card=card, month=month, year=year, CVV=CVV, Poi=Poi)
-                except:
-                    logging.exception('')
-                    print('wrong')
-                    cur.execute("ROLLBACK")
-                    con.commit()
+                con.commit()
+                extend = 1
+                return render_template('Profile.html', form=form, extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, Poi=Poi)
             if rec == 'yes':
                 yyes = 1
     return render_template('Profile.html', form=form, extend=extend, f=f, yyes=yyes, Poi=Poi)
@@ -356,20 +347,15 @@ def tickets_for_customers():
         print(ticket['exhibition'])
         print(ticket['type'])
         print(ticket['price'])
-        try:
-            cur.execute("INSERT INTO tickets_for_customers (id, login, password, exhibition_name, ttype_name, price)"
-                        "VALUES ({}, '{}', '{}', '{}', '{}', '{}')".format(current_user.id, current_user.username, passworld, ticket['exhibition'], ticket['type'], ticket['price']))
-            con.commit()
-        except:
-            logging.exception('')
-            print('wrong')
-            cur.execute("ROLLBACK")
-            con.commit()
+        cur.execute("INSERT INTO tickets_for_customers (id, login, password, exhibition_name, ttype_name, price)"
+                    "VALUES ({}, '{}', '{}', '{}', '{}', '{}')".format(current_user.id, current_user.username, passworld, ticket['exhibition'], ticket['type'], ticket['price']))
+        con.commit()
 
 
 
 @app.route('/Loh', methods=['GET', 'POST'])
 def Loh():
+    global dodik
     Poi = SS()
     pas = ''
     if current_user.is_authenticated:
@@ -378,9 +364,10 @@ def Loh():
     if request.method == 'POST':
         dodik = Poi.poisk.data
         recc = request.form
-        mama = redir(dodik,recc)
+        mama = redir(recc)
         if mama:
-            return redirect(url_for('Seach'))
+            Poisk()
+            return redirect(url_for('Search'))
     if form.validate_on_submit():
         username = form.username.data
         cur.execute("select * from customers")
@@ -398,9 +385,10 @@ def Fourzerofour(e):
     if request.method == 'POST':
         dodik = Poi.poisk.data
         recc = request.form
-        mama = redir(dodik,recc)
+        mama = redir(recc)
         if mama:
-            return redirect(url_for('Seach'))
+            Poisk()
+            return redirect(url_for('Search'))
     return render_template('ErrorPage.html', Poi=Poi), 404
 
 
@@ -408,7 +396,7 @@ def Fourzerofour(e):
 def SingIn():
     Poi = SS()
     global a, passworld
-    global usn
+    global usn, dodik
     if a == 0:
         logout()
     if current_user.is_authenticated:
@@ -418,9 +406,10 @@ def SingIn():
     if request.method == 'POST':
         dodik = Poi.poisk.data
         recc = request.form
-        mama = redir(dodik,recc)
+        mama = redir(recc)
         if mama:
-            return redirect(url_for('Seach'))
+            Poisk()
+            return redirect(url_for('Search'))
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
@@ -464,28 +453,47 @@ def logout():
     logout_user()
     return redirect(url_for('SingIn'))
 
+
 @app.route('/Search', methods=['GET', 'POST'])
-def Seach():
+def Search():
+    global exhibits_list, dodik
     Poi = SS()
     if request.method == 'POST':
         dodik = Poi.poisk.data
         recc = request.form
-        for rec in recc:
-            if rec == 'sub':
-                Poisk(dodik)
-    return render_template('Search.html', Poi=Poi)
+        redir(recc)
+        Poisk()
+    return render_template('Search.html', Poi=Poi, exhibits_list=exhibits_list, dodik=dodik)
 
 
-def redir(dodik, recc):
+def redir(recc):
     mama = 0
     for rec in recc:
         if rec == 'sub':
-            Poisk(dodik)
             mama = 1
     return mama
 
 
-def Poisk(dodik):
+def Poisk():
+    global dodik
     print(dodik)
-    return 0
+    cur.execute("select * from exhibits where exhibit_name like '%{dodik}%'".format(dodik=dodik))
+    all_info = cur.fetchall()
+    con.commit()
+    print(all_info)
+    global exhibits_list
+    exhibits_list = []
+    if dodik == '':
+        return exhibits_list
+    for singl_info in all_info:
+        inf = {
+            'exhibit_name':singl_info[9],
+            'view_name':singl_info[7],
+            'type_name':singl_info[5],
+            'exposition_name':singl_info[2],
+            'exhibition_name':singl_info[0],
+            'hall_name':singl_info[3],
+        }
+        exhibits_list.append(inf)
+    return exhibits_list
 

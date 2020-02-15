@@ -1,0 +1,27 @@
+.exhibit{
+    width: 1000px;
+    position: static;
+    left: 0;
+    background: darkslategray;
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+}
+h1{
+    padding: 40px;
+    color: white;
+    text-align: left;
+    font-size: 60px;
+    font-family: Mistral;
+}
+.exhibit h6{
+    text-align: left;
+    font-size: 30px;
+}
+.doggi{
+    width: 150px;
+    height: 150px;
+    position: fixed;
+    transform: translate(550%, -230%);
+}
