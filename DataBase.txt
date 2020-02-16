@@ -1,0 +1,201 @@
+---------------------------------------СОЗДАНИЕ ТАБЛИЦ------------------------------------------
+CREATE TABLE public."exhibition"
+(
+    	"exhibition_name" text NOT NULL PRIMARY KEY
+);
+
+ALTER TABLE public."exhibition"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."customer"
+(
+    	"customer_id" serial NOT NULL PRIMARY KEY,
+	"login" text NOT NULL,
+	"password" text NOT NULL
+);
+
+ALTER TABLE public."customer"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."card"
+(
+    	"card№" bigint NOT NULL,
+	"card_month" integer NOT NULL,
+	"card_year" integer NOT NULL,
+	"card_cvv" integer NOT NULL,
+	"customer_id" integer NOT NULL REFERENCES "customer" (customer_id),
+	PRIMARY KEY (card№, card_month, card_year, card_cvv)
+);
+
+ALTER TABLE public."card"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."ticket_type"
+(
+    "type_name" text NOT NULL PRIMARY KEY
+);
+
+ALTER TABLE public."ticket_type"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."employeer"
+(
+    	"passport№" integer NOT NULL PRIMARY KEY,
+	"name" text NOT NULL,
+	"password" text NOT NULL,
+	"surname" text NOT NULL,
+	"patronymic" text NOT NULL,
+	"work_experience" integer NOT NULL,
+	"function" text NOT NULL
+);
+
+ALTER TABLE public."employeer"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."type"
+(
+    "type_name" text NOT NULL PRIMARY KEY
+);
+
+ALTER TABLE public."type"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."kind"
+(
+    "kind_name" text NOT NULL PRIMARY KEY
+);
+
+ALTER TABLE public."kind"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."view"
+(
+    	"view_name" text NOT NULL PRIMARY KEY,
+	"kind_name" text NOT NULL REFERENCES "kind" (kind_name)
+);
+
+ALTER TABLE public."view"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."ticket"
+(
+    	"ticket№" serial NOT NULL PRIMARY KEY,
+	"price" money NOT NULL,
+	"type_name" text NOT NULL REFERENCES "ticket_type" (type_name),
+	"exhibition_name" text NOT NULL REFERENCES "exhibition" (exhibition_name)
+);
+
+ALTER TABLE public."ticket"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."ticket_for_customer"
+(
+    	"customer_ticket№" serial NOT NULL PRIMARY KEY,
+	"customer_id" integer NOT NULL REFERENCES "customer" (customer_id),
+	"ticket№" integer NOT NULL REFERENCES "ticket" (ticket№)
+);
+
+ALTER TABLE public."ticket_for_customer"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."hall"
+(
+    	"hall_name" text NOT NULL PRIMARY KEY,
+	"floor№" integer NOT NULL,
+	"exhibition_name" text NOT NULL REFERENCES "exhibition" (exhibition_name)
+);
+
+ALTER TABLE public."hall"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."employeer_in_the_hall"
+(
+    	"date" date NOT NULL,
+	"entry_time" time without time zone NOT NULL,
+	"exit_time" time without time zone NOT NULL,
+	"hall_name" text NOT NULL REFERENCES "hall" (hall_name),
+	"passport№" integer NOT NULL REFERENCES "employeer" (passport№),
+	PRIMARY KEY (date, passport№)
+);
+
+ALTER TABLE public."employeer_in_the_hall"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."exposition"
+(
+    	"exposition_inventory№" integer NOT NULL PRIMARY KEY,
+	"exposition_name" text NOT NULL,
+	"hall_name" text NOT NULL REFERENCES "hall" (hall_name),
+	"exhibition_name" text NOT NULL REFERENCES "exhibition" (exhibition_name)
+);
+
+ALTER TABLE public."exposition"
+    OWNER to postgres;
+-------------------------------------------------------------------------------------------------
+CREATE TABLE public."exhibit"
+(
+    	"exhibit_inventory№" integer NOT NULL PRIMARY KEY,
+	"exhibit_name" text NOT NULL,
+	"hall_name" text NOT NULL REFERENCES "hall" (hall_name),
+	"exhibition_name" text NOT NULL REFERENCES "exhibition" (exhibition_name),
+	"exposition_inventory№" integer NOT NULL REFERENCES "exposition" (exposition_inventory№),
+	"type_name" text NOT NULL REFERENCES "type" (type_name),
+	"view_name" text NOT NULL REFERENCES "view" (view_name)
+);
+
+ALTER TABLE public."exhibit"
+    OWNER to postgres;
+---------------------------------------ЗАПОЛНЕНИНЕ ТАБЛИЦ----------------------------------------
+INSERT INTO public.exhibition(exhibition_name)
+	VALUES ('Классика 2.0'), ('Морские глубины'), ('Чудо на амазонке'), ('Классика');
+-------------------------------------------------------------------------------------------------
+INSERT INTO public.ticket_type(type_name)
+	VALUES ('Обычный'), ('Детский');
+-------------------------------------------------------------------------------------------------
+INSERT INTO public.ticket("ticket№", price, type_name, exhibition_name)
+	VALUES (0, '1500', 'Обычный', 'Классика 2.0'), (1, '500', 'Детский', 'Классика 2.0'), (2, '800', 'Обычный', 'Морские глубины'), (3, '400', 'Детский', 'Морские глубины'),
+           (4, '2000', 'Обычный', 'Чудо на амазонке'), (5, '2500', 'Детский', 'Чудо на амазонке'), (6, '500', 'Обычный', 'Классика'), (7, '200', 'Детский', 'Классика');
+-------------------------------------------------------------------------------------------------
+INSERT INTO public.hall(hall_name, "floor№", exhibition_name)
+	VALUES ('Основной зал', 1, 'Классика 2.0'), ('Аквариумный зал', 0, 'Морские глубины'), 
+			('Зал-оранжерея', 2, 'Чудо на амазонке'), ('Классический зал', 3, 'Классика');
+-------------------------------------------------------------------------------------------------
+INSERT INTO public.employeer("passport№", name, password, surname, patronymic, work_experience, function)
+	VALUES (481932654, 'Андрей', 'цитата', 'Шаранад', 'Дмитриевич', 4, 'Админ всего'), (492048563, 'Дарья', 'цитата', 'Чуракова', 'Дмитриевна', 4, 'Студент');
+-------------------------------------------------------------------------------------------------
+INSERT INTO public.employeer_in_the_hall(date, entry_time, exit_time, hall_name, "passport№")
+	VALUES ('2020-02-19', '10:00:00', '22:00:00', 'Зал-оранжерея', 481932654), 
+			('2020-02-19', '08:00:00', '23:59:59', 'Основной зал', 492048563);
+-------------------------------------------------------------------------------------------------
+INSERT INTO public.type(type_name)
+	VALUES ('Чучело'), ('Скелет'), ('Останки'), ('Окаменелсть'), 
+			('Аниматроника'), ('Яйцо'), ('Живой экземпляр'), ('Панцирь');
+-------------------------------------------------------------------------------------------------
+INSERT INTO public.kind(kind_name)
+	VALUES ('Млекопитающее'), ('Пресноводное'), ('Пресмыкающиеся'), ('Земноводное');
+-------------------------------------------------------------------------------------------------
+INSERT INTO public.view(view_name, kind_name)
+	VALUES ('Приматы', 'Млекопитающее'), ('Пантеры', 'Млекопитающее'), ('Носорогообразные', 'Млекопитающее'),
+			('Медьвежьи', 'Млекопитающее'), ('Оленевые', 'Млекопитающее'), ('Зайцевые', 'Млекопитающее'),
+			('Рыбьи', 'Пресноводное'), ('Восьминогие', 'Пресноводное'), ('Акульи', 'Пресноводное'),
+			('Анаконда обыкновенная', 'Пресмыкающиеся'), ('Гадюка обыкновенная', 'Пресмыкающиеся'), ('Каролевская кобра', 'Пресмыкающиеся'),
+			('Австралийская квашка', 'Земноводное'), ('Древолаз', 'Земноводное'), ('Красноглазая квашка', 'Земноводное');
+-------------------------------------------------------------------------------------------------
+INSERT INTO public.exposition("exposition_inventory№", exposition_name, hall_name, exhibition_name)
+	VALUES (0, 'Саванна', 'Основной зал', 'Классика 2.0'), (1, 'Морское депо', 'Аквариумный зал', 'Морские глубины'), (2, 'Змениная топь', 'Зал-оранжерея', 'Чудо на амазонке'), (3, 'Сибирь', 'Классический зал', 'Классика');
+-------------------------------------------------------------------------------------------------
+INSERT INTO public.exhibit(
+	"exhibit_inventory№", exhibit_name, hall_name, exhibition_name, "exposition_inventory№", type_name, view_name)
+	VALUES (0, 'Шимпанзе', 'Основной зал', 'Классика 2.0', 0, 'Чучело', 'Приматы'),
+			(1, 'Носорог', 'Основной зал', 'Классика 2.0', 0, 'Скелет', 'Носорогообразные'),
+			(2, 'Лев', 'Основной зал', 'Классика 2.0', 0, 'Останки', 'Пантеры'),
+			(3, 'Рыба-ёж', 'Аквариумный зал', 'Морские глубины', 1, 'Яйцо', 'Рыбьи'),
+			(4, 'Осьминог', 'Аквариумный зал', 'Морские глубины', 1, 'Аниматроника', 'Восьминогие'),
+			(5, 'Белая акула', 'Аквариумный зал', 'Морские глубины', 1, 'Живой экземпляр', 'Акульи'),
+			(6, 'Анаконда', 'Зал-оранжерея', 'Чудо на амазонке', 2, 'Окаменелсть', 'Анаконда обыкновенная'),
+			(7, 'Гадюка', 'Зал-оранжерея', 'Чудо на амазонке', 2, 'Скелет', 'Гадюка обыкновенная'),
+			(8, 'Кобра', 'Зал-оранжерея', 'Чудо на амазонке', 2, 'Панцирь', 'Каролевская кобра'),
+			(9, 'Бурый медведь', 'Классический зал', 'Классика', 3, 'Чучело', 'Медьвежьи'),
+			(10, 'Сибирский олень', 'Классический зал', 'Классика', 3, 'Скелет', 'Оленевые'),
+			(11, 'Заяц-русак', 'Классический зал', 'Классика', 3, 'Живой экземпляр', 'Зайцевые');
+-------------------------------------------------------------------------------------------------

@@ -14,6 +14,7 @@ card = 0
 tiktok2 = []
 exhibits_list = []
 dodik = ''
+Surname = ''
 # Run ######################################################################
 app = Flask(__name__)
 
@@ -235,7 +236,7 @@ def SingUp():
 
 @app.route('/Profile', methods=['GET', 'POST'])
 def Profile():
-    global dodik
+    global dodik, Surname
     Poi = SS()
     f = Basket()
     yyes = 0
@@ -246,10 +247,14 @@ def Profile():
     user = current_user.username
     cur.execute("select * from cards")
     userss = cur.fetchall()
+    con.commit()
+    cur.execute("select * from employees")
+    usersss = cur.fetchall()
     for a_users in userss:
         print(a_users)
-        if a_users[1] == user:
+        if (a_users[1] == user) and (Surname == ''):
             global tiktok2
+            print(Surname)
             extend = 1
             con.commit()
             card = a_users[3]
@@ -296,8 +301,12 @@ def Profile():
                             tiktok2 = []
                             proverka = 0
                             take = take_tickets()
-                            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take, Poi=Poi)
-            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take, Poi=Poi)
+                            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take, Poi=Poi, Surname=Surname)
+            return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take, Poi=Poi, Surname=Surname)
+    for a_usersss in usersss:
+        if (a_usersss[1] == user) and (Surname != ''):
+            form = ExtendForm()
+            return render_template('Profile.html', extend=extend, f=f, yyes=yyes, Poi=Poi, form=form, Surname=Surname)
     con.commit()
     form = ExtendForm()
     if request.method == 'POST':
@@ -321,7 +330,7 @@ def Profile():
             if rec == 'yes':
                 yyes = 1
     return render_template('Profile.html', form=form, extend=extend, f=f, yyes=yyes, Poi=Poi)
-    # return render_template('Profile.html', extend=extend, card=card, month=month, year=year, CVV=CVV, f=f, proverka=proverka, tiktok2=tiktok2, Poi=Poi)
+
 
 
 def take_tickets():
@@ -395,7 +404,7 @@ def Fourzerofour(e):
 @app.route('/SingIn', methods=['GET', 'POST'])
 def SingIn():
     Poi = SS()
-    global a, passworld
+    global a, passworld, Surname
     global usn, dodik
     if a == 0:
         logout()
@@ -425,13 +434,14 @@ def SingIn():
                 return redirect(url_for('Profile'))
         con.commit()
         a = 2
-        cur.execute("select passport№, name, password from employees")
+        cur.execute("select * from employees")
         users = cur.fetchall()
         for a_user in users:
             print(a_user)
             if a_user[1] == username and a_user[2] == password:
                 user = User(a_user[0])
                 usn = a_user[1]
+                Surname = a_user[3]
                 login_user(user, remember=form.remember_me.data)
                 passworld = password
                 return redirect(url_for('Profile'))
@@ -440,7 +450,8 @@ def SingIn():
 
 @app.route('/Logout')
 def Logout():
-    global tiktok2
+    global tiktok2, Surname
+    Surname = ''
     tiktok2 = []
     logout_user()
     return redirect(url_for('MainPage'))
@@ -448,7 +459,8 @@ def Logout():
 
 @app.route('/logout')
 def logout():
-    global tiktok2
+    global tiktok2, Surname
+    Surname = ''
     tiktok2 = []
     logout_user()
     return redirect(url_for('SingIn'))

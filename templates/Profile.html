@@ -30,46 +30,50 @@
     <div class="out">
         <div class="bbox">
             <h1>{{ current_user.username }}</h1>
-            {% if extend != 0 %}
-                <p>Наконец-то все готово!<br>Теперь вы можете приступать к покупке билетов.</p>
-                <p class="p">Ваша карта успешно добавлена!</p>
-                <div class="card1">
-                    <div class="number1"><h2>{{ card }}</h2></div>
-                    <div class="month1"><h4>{{ month }}</h4></div>
-                    <div class="year1"><h4>{{ year }}</h4></div>
-                    <div class="CVV1"><h4>***</h4></div>
-                    <h3>/</h3>
-                </div>
-                <div class="have">
-                <h6>Ваши билеты:</h6>
-                    {% for tk in take %}
-                        <div class="inin">
-                            <h6>№Билета::{{ tk.tic }} | Выставка::{{ tk.exhib }} | Тип билета::{{ tk.typ }} | Стоимость::{{ tk.pric }}</h6>
-                            <h6>-------------------------------------------------------------------</h6>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p>Может быть Вы хотите добавить еще немного информации о себе?<br>Это позволит Вам покупать и оплачивать билеты.</p>
-                <br>
-                <label class="check">
-                    <input type="checkbox" name="">
-                    <div class="ch"></div>
-                    <br>
-                    <div class="display">
-
-                            {{ form.hidden_tag() }}
-                            <div class="card">
-                                <div class="number">{{ form.card(size=20, placeholder="5500 0000 0000 0000") }}</div><br>
-                                <div class="month">{{ form.month(size=1, placeholder="mon") }}</div><br>
-                                <div class="year">{{ form.year(size=1, placeholder="year") }}</div><br>
-                                <div class="CVV">{{ form.CVV(size=1, placeholder="CVV") }}</div>
-                                <h3>/</h3>
-                            </div>
-                            <br><br><br>
-                        <form action="" method="post" novalidate>{{ form.submit() }}</form><br>
+            {% if Surname == '' %}
+                {% if extend != 0 %}
+                    <p>Наконец-то все готово!<br>Теперь вы можете приступать к покупке билетов.</p>
+                    <p class="p">Ваша карта успешно добавлена!</p>
+                    <div class="card1">
+                        <div class="number1"><h2>{{ card }}</h2></div>
+                        <div class="month1"><h4>{{ month }}</h4></div>
+                        <div class="year1"><h4>{{ year }}</h4></div>
+                        <div class="CVV1"><h4>***</h4></div>
+                        <h3>/</h3>
                     </div>
-                </label>
+                    <div class="have">
+                    <h6>Ваши билеты:</h6>
+                        {% for tk in take %}
+                            <div class="inin">
+                                <h6>№Билета::{{ tk.tic }} | Выставка::{{ tk.exhib }} | Тип билета::{{ tk.typ }} | Стоимость::{{ tk.pric }}</h6>
+                                <h6>-------------------------------------------------------------------</h6>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>Может быть Вы хотите добавить еще немного информации о себе?<br>Это позволит Вам покупать и оплачивать билеты.</p>
+                    <br>
+                    <label class="check">
+                        <input type="checkbox" name="">
+                        <div class="ch"></div>
+                        <br>
+                        <div class="display">
+
+                                {{ form.hidden_tag() }}
+                                <div class="card">
+                                    <div class="number">{{ form.card(size=20, placeholder="5500 0000 0000 0000") }}</div><br>
+                                    <div class="month">{{ form.month(size=1, placeholder="mon") }}</div><br>
+                                    <div class="year">{{ form.year(size=1, placeholder="year") }}</div><br>
+                                    <div class="CVV">{{ form.CVV(size=1, placeholder="CVV") }}</div>
+                                    <h3>/</h3>
+                                </div>
+                                <br><br><br>
+                            <form action="" method="post" novalidate>{{ form.submit() }}</form><br>
+                        </div>
+                    </label>
+                {% endif %}
+            {% else %}
+
             {% endif %}
         </div>
     </div>
@@ -103,5 +107,7 @@
                 </form>
             {% endif %}
         </div>
+    {% else %}
+
     {% endif %}
 {% endblock %}
