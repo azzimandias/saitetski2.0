@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/Lenin museum</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Lenin Museum@localhost" uuid="703ec140-a3e5-4133-b527-c53ab155fb27">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/Lenin Museum</jdbc-url>
+    </data-source>
   </component>
 </project>

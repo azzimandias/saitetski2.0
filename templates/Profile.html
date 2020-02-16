@@ -30,7 +30,7 @@
     <div class="out">
         <div class="bbox">
             <h1>{{ current_user.username }}</h1>
-            {% if Surname == '' %}
+            {#{% if Surname == '' %}#}
                 {% if extend != 0 %}
                     <p>Наконец-то все готово!<br>Теперь вы можете приступать к покупке билетов.</p>
                     <p class="p">Ваша карта успешно добавлена!</p>
@@ -45,7 +45,7 @@
                     <h6>Ваши билеты:</h6>
                         {% for tk in take %}
                             <div class="inin">
-                                <h6>№Билета::{{ tk.tic }} | Выставка::{{ tk.exhib }} | Тип билета::{{ tk.typ }} | Стоимость::{{ tk.pric }}</h6>
+                                <h6>№Билета::{{ tk.ticket }} | Выставка::{{ tk.exhibition }} | Тип билета::{{ tk.type }} | Стоимость::{{ tk.price }}</h6>
                                 <h6>-------------------------------------------------------------------</h6>
                             </div>
                         {% endfor %}
@@ -72,9 +72,9 @@
                         </div>
                     </label>
                 {% endif %}
-            {% else %}
+            {#{% else %}
 
-            {% endif %}
+            {% endif %}#}
         </div>
     </div>
     </form>
