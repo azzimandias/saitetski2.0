@@ -51,7 +51,7 @@ class Sub8(FlaskForm):
 class Basket(FlaskForm):
     yes = SubmitField('Купить')
     no = SubmitField('Очистить корзину')
-    CVV = IntegerField('Введите CVV карты', validators=[DataRequired()])
+    CV = IntegerField('Введите CVV карты', validators=[DataRequired()])
     yes2 = SubmitField('Подтвердить')
 
 

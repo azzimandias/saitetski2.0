@@ -5,7 +5,6 @@ from flask_login import LoginManager, logout_user, login_required, login_user, c
 from config import Config
 from forms import LoginForm, RegistrationForm, CheckForm, ExtendForm, Sub1, Sub2, Sub3, Sub4, Sub5, Sub6, Sub7, Sub8, Basket, SS
 from flask_login import UserMixin
-#from __init__ import login
 from DB import cur, con
 usn = ''
 a = 0
@@ -174,19 +173,27 @@ def Profile():
     yyes = 0
     extend = 0
     proverka = 0
+    work_time = []
     if usn == '':
         return redirect(url_for('MainPage'))
+    if request.method == 'POST':
+        dodik = Poi.poisk.data
+        recc = request.form
+        mama = redir(recc)
+        if mama:
+            Poisk()
+            return redirect(url_for('Search'))
     cur.execute("select * from card")
     userss = cur.fetchall()
     con.commit()
     cur.execute("select * from employeer")
     usersss = cur.fetchall()
+    con.commit()
     for a_users in userss:
         if (a_users[4] == int(current_user.id)) and (Surname == ''):
             global tiktok2
             print(Surname)
             extend = 1
-            con.commit()
             take = take_tickets()
             if tiktok2 != []:
                 proverka = 1
@@ -200,43 +207,51 @@ def Profile():
                 for rec in request.form:
                     if rec == 'yes':
                         if tiktok2 == []:
-                            break
+                            flash('Корзина пуста')
+                            return redirect(url_for('Profile'))
                         yyes = 1
                     if rec == 'no':
                         tiktok2 = []
                         proverka = 0
                     if rec == 'yes2':
-                        print(f.CVV.data)
-                        if f.CVV.data == a_users[3]:
+                        print(f.CV.data)
+                        if f.CV.data == a_users[3]:
                             tickets_for_customers()
                             tiktok2 = []
                             proverka = 0
                             take = take_tickets()
+                            print(yyes)
                             return render_template('Profile.html', extend=extend, card=a_users[0], month=a_users[1], year=a_users[2], CVV=a_users[3], f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take, Poi=Poi, Surname=Surname)
+            print(yyes)
             return render_template('Profile.html', extend=extend, card=a_users[0], month=a_users[1], year=a_users[2], CVV=a_users[3], f=f, yyes=yyes, proverka=proverka, tiktok2=tiktok2, take=take, Poi=Poi, Surname=Surname)
     for a_usersss in usersss:
-        if (a_usersss[0] == int(current_user.id)) and (Surname != ''):
+        if (Surname != '') and (a_usersss[1] == current_user.username):
             form = ExtendForm()
-            return render_template('Profile.html', extend=extend, f=f, yyes=yyes, Poi=Poi, form=form, Surname=Surname)
+            cur.execute("select * from employeer_in_the_hall where passport = {pas}".format(pas=a_usersss[0]))
+            in_hall = cur.fetchall()
+            con.commit()
+            for hall in in_hall:
+                inside3={
+                    'date':hall[0],
+                    'entry_time':hall[1],
+                    'exit_time':hall[2],
+                    'hall_name':hall[3],
+                }
+                work_time.append(inside3)
+            return render_template('Profile.html', extend=extend, f=f, yyes=yyes, Poi=Poi, form=form, Surname=Surname, surname=a_usersss[3], patronymic=a_usersss[4], function=a_usersss[6], work_time=work_time)
     con.commit()
     form = ExtendForm()
     if request.method == 'POST':
-        dodik = Poi.poisk.data
-        recc = request.form
-        mama = redir(recc)
-        if mama:
-            Poisk()
-            return redirect(url_for('Search'))
         for rec in request.form:
             if rec == 'submit':
                 cur.execute("INSERT INTO card (customer_id, card№, card_month, card_year, card_cvv)"
                             "VALUES ({}, {}, {}, {}, {})".format(current_user.id, form.card.data, form.month.data, form.year.data, form.CVV.data))
                 con.commit()
                 extend = 1
-                return render_template('Profile.html', form=form, extend=extend, card=form.card.data, month=form.month.data, year=form.year.data, CVV=form.CVV.data, f=f, Poi=Poi)
+                return render_template('Profile.html', form=form, extend=extend, card=form.card.data, month=form.month.data, year=form.year.data, CVV=form.CVV.data, f=f, Poi=Poi, Surname=Surname)
             if rec == 'yes':
                 yyes = 1
-    return render_template('Profile.html', form=form, extend=extend, f=f, yyes=yyes, Poi=Poi)
+    return render_template('Profile.html', form=form, extend=extend, f=f, yyes=yyes, Poi=Poi, Surname=Surname)
 
 
 

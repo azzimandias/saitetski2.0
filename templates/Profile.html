@@ -30,7 +30,7 @@
     <div class="out">
         <div class="bbox">
             <h1>{{ current_user.username }}</h1>
-            {#{% if Surname == '' %}#}
+            {% if Surname == '' %}
                 {% if extend != 0 %}
                     <p>Наконец-то все готово!<br>Теперь вы можете приступать к покупке билетов.</p>
                     <p class="p">Ваша карта успешно добавлена!</p>
@@ -72,42 +72,57 @@
                         </div>
                     </label>
                 {% endif %}
-            {#{% else %}
-
-            {% endif %}#}
+            {% else %}
+                <h1>{{ patronymic }}</h1>
+                <h1>{{ surname }}</h1><br>
+                <h2>Тип работы:: {{ function }}</h2>
+            {% endif %}
         </div>
     </div>
     </form>
 
     <div class="krug"></div>
     <img src="https://pa1.narvii.com/7015/07fdf723dc0fc3922df9fc2e5febeec4de6ae2b0r1-320-270_hq.gif" class="imag">
-    {% if card %}
-        <div class="basket">
-            <h1>Корзина</h1>
-            <div class="inside">
-                {% if proverka == 0 %}
-                    <h6>Пока что тут пусто</h6>
-                {% else %}
-                    {% for tok in tiktok2 %}
-                        <div class="inin">
-                            <h6>Выставка::{{ tok.exhibition }} | Тип билета::{{ tok.type }} | Стоимость::{{ tok.price }}</h6>
-                            <h6>-------------------------------------------------------------------------------------</h6>
-                        </div>
-                    {% endfor %}
+    {% if Surname == '' %}
+        {% if card %}
+            <div class="basket">
+                <h1>Корзина</h1>
+                <div class="inside">
+                    {% if proverka == 0 %}
+                        <h6>Пока что тут пусто</h6>
+                    {% else %}
+                        {% for tok in tiktok2 %}
+                            <div class="inin">
+                                <h6>Выставка::{{ tok.exhibition }} | Тип билета::{{ tok.type }} | Стоимость::{{ tok.price }}</h6>
+                                <h6>-------------------------------------------------------------------------------------</h6>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% if yyes == 0 %}
+                    <div class="yes"><form action="" method="post" novalidate>{{ f.yes }}</form></div>
+                    <div class="no"><form action="" method="post" novalidate>{{ f.no }}</form></div>
+                {% elif yyes == 1 %}
+                    <form action="" method="post" novalidate>
+                        {{ f.hidden_tag() }}
+                        <div class="yes">{{ f.CV(placeholder="Введите CVV") }}</div>
+                        <div class="no2">{{ f.yes2 }}</div>
+                    </form>
                 {% endif %}
             </div>
-            {% if yyes == 0 %}
-                <div class="yes"><form action="" method="post" novalidate>{{ f.yes }}</form></div>
-                <div class="no"><form action="" method="post" novalidate>{{ f.no }}</form></div>
-            {% else %}
-                <form action="" method="post" novalidate>
-                    {{ f.hidden_tag() }}
-                    <div class="yes">{{ f.CVV(placeholder="Введите CVV") }}</div>
-                    <div class="no2">{{ f.yes2 }}</div>
-                </form>
-            {% endif %}
-        </div>
+        {% endif %}
     {% else %}
-
+        <div class="basket">
+            <h1>Расписание</h1>
+            {% for work in work_time %}
+                <div class="insid">
+                    <h6>| День:: {{ work.date }} | </h6>
+                    <h6>Начало работы:: {{ work.entry_time }} | </h6>
+                    <h6>Окончание работы:: {{ work.exit_time }} | </h6>
+                    <h6>Зал:: {{ work.hall_name }} |</h6>
+                </div>
+            {% endfor %}
+        </div>
     {% endif %}
 {% endblock %}
+

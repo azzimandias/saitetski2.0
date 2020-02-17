@@ -306,3 +306,16 @@ input[type="checkbox"]:checked ~ .ch::before{
     border-radius: 20px;
     padding: 20px;
 }
+.insid{
+    position: relative;
+    display: flex;
+    background: grey;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 5px;
+    overflow: auto;
+}
+.insid h6{
+    position: center;
+    font-size: 15px;
+}
