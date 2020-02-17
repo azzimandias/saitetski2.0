@@ -40,6 +40,13 @@
                     <span style="color: powderblue;">[{{ error }}]</span>
                 {% endfor %}
             </p>
+            <p>
+                {{ form.question.label }}<br>
+                {{ form.question(size=10, placeholder="Ответьте на секретный вопрос") }}<br>
+                {% for error in form.question.errors %}
+                    <span style="color: powderblue;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
             <p>{{ form.submit() }}</p>
             <a href="{{ url_for('SingIn') }}">Уже есть аккаунт?</a>
         </form>

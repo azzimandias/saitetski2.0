@@ -15,11 +15,13 @@ class RegistrationForm(FlaskForm):
     username = StringField('Имя пользователя', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired()])
     password2 = PasswordField('Повторите пароль', validators=[DataRequired(), EqualTo('password')])
+    question = StringField('Секретный вопрос: <br>Ваше любимое животное?', validators=[DataRequired()])
     submit = SubmitField('Пожалуйста, возьмите мои данные и пользуйтесь ими в ваших личных целях')
 
 
 class CheckForm(FlaskForm):
-    username = StringField('Введите имя пользователя', validators=[DataRequired()])
+    username = StringField('Введите ваше имя', validators=[DataRequired()])
+    ansver = StringField('Ваше любимое животное?', validators=[DataRequired()])
     submit = SubmitField('OK!')
 
 
@@ -58,13 +60,4 @@ class Basket(FlaskForm):
 class SS(FlaskForm):
     poisk = StringField('Poisk', validators=[DataRequired()])
 
-
-
-    # def validate_username(self, username):
-    #     cur.execute("SELECT login FROM customers")
-    #     loginList = cur.fetchall()
-    #     for login in loginList:
-    #         if username.data == login[0]:
-    #             raise ValidationError('Это имя пользователя занято, придумайте другое.')
-    #             raise ValidationError('Please use a different username.')
 

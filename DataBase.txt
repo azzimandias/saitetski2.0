@@ -11,7 +11,8 @@ CREATE TABLE public."customer"
 (
     	"customer_id" serial NOT NULL PRIMARY KEY,
 	"login" text NOT NULL,
-	"password" text NOT NULL
+	"password" text NOT NULL,
+	"question" text NOT NULL
 );
 
 ALTER TABLE public."customer"

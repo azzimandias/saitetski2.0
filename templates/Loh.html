@@ -19,8 +19,10 @@
         {{ form.hidden_tag() }}
         <div class="mum">
             <h1>Итак, Вы забыли пароль:</h1>
-            <p>Введите ваше имя</p>
+            {{ form.username.label }}<br>
             {{ form.username(size=32, placeholder="Введите имя пользователя") }}<br><br>
+            {{ form.ansver.label }}<br>
+            {{ form.ansver(size=32, placeholder="Ответьте на вопрос") }}<br><br>
             {{ form.submit() }}<br><br>
             {% if pas != ''%}
                 <p>Пароль: {{ pas }}</p>

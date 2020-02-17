@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template, flash, redirect, url_for, request
 import logging
-from flask_login import LoginManager, logout_user, login_required, login_user, current_user
+from flask_login import LoginManager, logout_user, login_user, current_user
 from config import Config
 from forms import LoginForm, RegistrationForm, CheckForm, ExtendForm, Sub1, Sub2, Sub3, Sub4, Sub5, Sub6, Sub7, Sub8, Basket, SS
 from flask_login import UserMixin
@@ -153,8 +153,8 @@ def SingUp():
     if reg_form.validate_on_submit():
         print('form.register succeed')
         try:
-            cur.execute("INSERT INTO customer (login, password)"
-                        "VALUES ('{}', '{}')".format(reg_form.username.data, reg_form.password.data))
+            cur.execute("INSERT INTO customer (login, password, question)"
+                        "VALUES ('{}', '{}', '{}')".format(reg_form.username.data, reg_form.password.data, reg_form.question.data))
             con.commit()
         except:
             logging.exception('')
@@ -301,12 +301,11 @@ def Loh():
             Poisk()
             return redirect(url_for('Search'))
     if form.validate_on_submit():
-        username = form.username.data
         cur.execute("select * from customer")
         users = cur.fetchall()
         for a_user in users:
             print(a_user)
-            if a_user[1] == username:
+            if (a_user[1] == form.username.data) and (a_user[3] == form.ansver.data):
                 pas = a_user[2]
     return render_template('Loh.html', form=form, pas=pas, Poi=Poi)
 
